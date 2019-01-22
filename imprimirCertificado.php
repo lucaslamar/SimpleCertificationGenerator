@@ -23,6 +23,7 @@ imagestring($imge, 3, 440, 410, utf8_decode("Concluido em : ") . date("d/m/Y"), 
 // GERANDO A IMAGEM
 header("Content-type: image/jpeg");
 $nomeSemEspacos = str_replace(' ', '', $nomeCertificando);
+imagejpeg($imge);
 imagejpeg($imge, "certificado-".mb_strtolower($nomeSemEspacos,"utf-8").".jpg",60);
 imagedestroy($imge);
 ?>
