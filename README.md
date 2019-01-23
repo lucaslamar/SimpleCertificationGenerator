@@ -5,5 +5,5 @@ ATENÇÃO: Vale lembrar que os certificados gerados pelo "SimpleCertificationGen
 
 REQUISITOS PARA USO E COMO USAR
 TER XAAMP INSTALADADO NA MAQUINA;
-RODAR O APACHE
+RODAR O APACHE;
 ACESSAR A SEGUINTE URL: http://localhost/Certificado/gerarCertificado.php 
