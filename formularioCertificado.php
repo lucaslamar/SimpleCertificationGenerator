@@ -21,24 +21,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <body>
 	<!-- main -->
 	<div class="main-w3layouts wrapper">
-		<h1>Assinar Certificados</h1>
+		<h1>Certificado Fitcicio</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
-				<form action="imprimirCertificado" method="post">
-					<input class="text" type="text" name="Username" placeholder="Username" required="">
-					<input class="text email" type="email" name="email" placeholder="Email" required="">
-					<input class="text" type="password" name="password" placeholder="Password" required="">
-					<input class="text w3lpass" type="password" name="password" placeholder="Confirm Password" required="">
+				<form action="imprimirCertificado.php" method="post">
+					<input class="text" type="text" name="nome-certificado" placeholder="Nome Certificado" size="26" required="">
+					<input class="text email" type="text" name="nome-certificando" placeholder="Nome Certificando" required="">
+					<input class="text" type="text" name="tamanho-fonte" placeholder="Tamanho Fonte"  value=32 required="">
+					<input class="text w3lpass" type="text" name="eixo-x" placeholder="Eixo X" value=440 required="">
+					<input class="text w3lpass" type="text" name="eixo-y" placeholder="Eixo Y"  value=350 required="">
 					<div class="wthree-text">
-						<label class="anim">
-							<input type="checkbox" class="checkbox" required="">
-							<span>I Agree To The Terms & Conditions</span>
-						</label>
 						<div class="clear"> </div>
 					</div>
-					<input type="submit" value="SIGNUP">
+					<input type="submit" value="Gerar Certificado">
+					<input type="submit" value="Vizualizar Certificado">
 				</form>
-				<p>Don't have an Account? <a href="#"> Login Now!</a></p>
+				
 			</div>
 		</div>
 		<!-- copyright -->
