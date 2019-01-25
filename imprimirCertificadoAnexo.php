@@ -7,7 +7,10 @@
     $tamanhoFonte = (int)$_POST['tamanho-fonte'];
     $eixoX = (int)$_POST['eixo-x'];
     $eixoY = (int)$_POST['eixo-y'];
-    //var_dump($uploadfile);exit;
+
+    // tratando parametros passados vazios
+   
+
     // ESPECICAÇÕES IMAGEM
     // Exemplo de como gerar imagem a partir de um modelo base
     $imge = imagecreatefromjpeg($uploadfile);
@@ -31,4 +34,6 @@
     $nomeSemEspacos = str_replace(' ', '', $nomeCertificando); 
     imagejpeg($imge, "certificado-".mb_strtolower($nomeSemEspacos,"utf-8").".jpg",60); // salva arquivo .JPG na pasta htdocs
     imagedestroy($imge);
+    echo unlink($uploadfile);
+
 ?>
