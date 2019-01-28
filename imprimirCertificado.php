@@ -7,9 +7,9 @@
     $eixoY = (int)$_POST['eixo-y'];
 
       // tratando parametros passados vazios
-      if (is_null($eixoX)) $eixoX = 440;
-      if (is_null($eixoY)) $eixoY = 350;
-      if (is_null($tamanhoFonte)) $tamanhoFonte = 32;
+      if (empty($tamanhoFonte)) $tamanhoFonte ?: $tamanhoFonte = 22;
+      if (empty($eixoX)) $eixoX ?: $eixoX = 480;
+      if (empty($eixoY)) $eixoY ?: $eixoY = 320;
 
     // ESPECICAÇÕES IMAGEM
     // Exemplo de como gerar imagem a partir de um modelo base

@@ -4,14 +4,15 @@
     $uploadfile = $uploaddir . basename($_FILES['anexo']['name']);
     move_uploaded_file($_FILES['anexo']['tmp_name'], $uploadfile);
     $nomeCertificando = $_POST['nome-certificando'];
-    $tamanhoFonte = (int)$_POST['tamanho-fonte'];
+    $tamanhoFonte = (int)$_POST['tamanho-fonte']; 
     $eixoX = (int)$_POST['eixo-x'];
     $eixoY = (int)$_POST['eixo-y'];
 
     // tratando parametros passados vazios
-    if (is_null($eixoX)) $eixoX = 440;
-    if (is_null($eixoY)) $eixoY = 350;
-    if (is_null($tamanhoFonte)) $tamanhoFonte = 32;
+    if (empty($tamanhoFonte)) $tamanhoFonte ?: $tamanhoFonte = 32;
+    if (empty($eixoX)) $eixoX ?: $eixoX = 440;
+    if (empty($eixoY)) $eixoY ?: $eixoY = 320;
+
 
 
     
