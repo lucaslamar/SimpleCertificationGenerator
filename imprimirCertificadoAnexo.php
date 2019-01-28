@@ -9,7 +9,12 @@
     $eixoY = (int)$_POST['eixo-y'];
 
     // tratando parametros passados vazios
-   
+    if (is_null($eixoX)) $eixoX = 440;
+    if (is_null($eixoY)) $eixoY = 350;
+    if (is_null($tamanhoFonte)) $tamanhoFonte = 32;
+
+
+    
 
     // ESPECICAÇÕES IMAGEM
     // Exemplo de como gerar imagem a partir de um modelo base
@@ -34,6 +39,6 @@
     $nomeSemEspacos = str_replace(' ', '', $nomeCertificando); 
     imagejpeg($imge, "certificado-".mb_strtolower($nomeSemEspacos,"utf-8").".jpg",60); // salva arquivo .JPG na pasta htdocs
     imagedestroy($imge);
-    echo unlink($uploadfile);
+    echo unlink($uploadfile); // Exclui imagem usada como base
 
 ?>

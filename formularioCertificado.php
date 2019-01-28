@@ -27,9 +27,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<form action="imprimirCertificado.php" method="post">
 					<input class="text" type="text" name="nome-certificado" placeholder="Nome Certificado" size="26" required="">
 					<input class="text email" type="text" name="nome-certificando" placeholder="Nome Certificando" required="">
-					<input class="text" type="text" name="tamanho-fonte" placeholder="Tamanho Fonte"  value=32 required="">
-					<input class="text w3lpass" type="text" name="eixo-x" placeholder="Eixo X" value=440 required="">
-					<input class="text w3lpass" type="text" name="eixo-y" placeholder="Eixo Y"  value=350 required="">
+					<input class="text" type="text" name="tamanho-fonte" placeholder="Tamanho Fonte">
+					<input class="text w3lpass" type="text" name="eixo-x" placeholder="Eixo X" >
+					<input class="text w3lpass" type="text" name="eixo-y" placeholder="Eixo Y" >
 					<div class="wthree-text">
 						<div class="clear"> </div>
 					</div>
