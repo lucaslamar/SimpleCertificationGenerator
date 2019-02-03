@@ -32,8 +32,7 @@ session_start();
     $gray = imagecolorallocate($imge, 120, 120, 120);
 
     // fontes
-    $fonteBevan = __DIR__ . DIRECTORY_SEPARATOR . "fonts" . DIRECTORY_SEPARATOR . "Bevan-Regular.ttf";
-    $fontePlayBall= __DIR__ . DIRECTORY_SEPARATOR . "fonts" . DIRECTORY_SEPARATOR . "Playball-Regular.ttf";
+    $fontePadrao = __DIR__ . DIRECTORY_SEPARATOR . "fonts" . DIRECTORY_SEPARATOR . "DancingScript-Regular.ttf";
                 
     //Quando for usar uma fonte própria segue a função e parametros necessário - Neste exemplo válido para fontes truetype (ttf)
     //imagettftext(image, size, angle, x, y, color, fontfile, text)
