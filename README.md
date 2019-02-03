@@ -1,13 +1,15 @@
-# SimpleCertificationGenerator
-Um Simples Gerador de Certificado feito em PHP usando a biblioteca GD do PHP. Ao preencher o formulario é gerado um certificado que é mostrado na tela, além de se criar um arquivo .JPG do mesmo na pasta htdocs do XAMPP.
+# SIMPLECERTIFICATIONGENERATOR
+UM SIMPLES GERADOR DE CERTIFICADO FEITO EM PHP USANDO A BIBLIOTECA IMAGEIMAGICK DO PHP E GHOSTSCRIPT. AO PREENCHER O FORMULARIO É GERADO UM CERTIFICADO QUE É MOSTRADO NA TELA, DISPONIBILIZANDO AS OPÇÕES DE SALVAR EM PDF OU JPEG.
 
-ATENÇÃO: Vale lembrar que os certificados gerados pelo "SimpleCertificationGenerator" NÃO SÃO VALIDOS é apenas uma base... E PARA ZOEIRAS EM GERAL, OBRIGADO!
+ATENÇÃO: VALE LEMBRAR QUE OS CERTIFICADOS GERADOS PELO "SIMPLECERTIFICATIONGENERATOR" NÃO SÃO VALIDOS É APENAS UMA BASE... E PARA ZOEIRAS EM GERAL, OBRIGADO!
 
 REQUISITOS PARA USO E COMO USAR
 
 <ul>
-<li>TER XAMPP INSTALADADO NA MAQUINA</li>
-<li>TER INSTALADO O GHOSTSCRIPT</li>
-<li>TER INSTALADO A BIBLIOTECA IMAGICK</li>
+<li>TER ALGUM SERVIDOR APACHE INSTALADO</li>
+<li>TER INSTALADO O GHOSTSCRIPT (https://www.ghostscript.com/download/gsdnld.html)</li>
+<li>TER INSTALADO A BIBLIOTECA IMAGICK (https://www.imagemagick.org/script/download.php)</li>
 </ul> <br />
 ACESSAR A SEGUINTE URL: http://localhost/SimpleCertificationGenerator/html/gerarCertificado.html
+<br />
+OU O ENDEREÇO PADRÃO DO SEU SERVIDOR APACHE
