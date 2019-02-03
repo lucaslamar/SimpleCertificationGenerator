@@ -4,7 +4,10 @@ Um Simples Gerador de Certificado feito em PHP usando a biblioteca GD do PHP. Ao
 ATENÇÃO: Vale lembrar que os certificados gerados pelo "SimpleCertificationGenerator" NÃO SÃO VALIDOS é apenas uma base... E PARA ZOEIRAS EM GERAL, OBRIGADO!
 
 REQUISITOS PARA USO E COMO USAR
-TER XAMPP INSTALADADO NA MAQUINA;
-TER INSTALADO A BIBLIOTECA IMAGICK;
-TER INSTALADO O GHOSTSCRIPT;
+
+<ul>
+<li>TER XAMPP INSTALADADO NA MAQUINA</li>
+<li>TER INSTALADO O GHOSTSCRIPT</li>
+<li>TER INSTALADO A BIBLIOTECA IMAGICK</li>
+</ul>
 ACESSAR A SEGUINTE URL: http://localhost/SimpleCertificationGenerator/html/gerarCertificado.html
