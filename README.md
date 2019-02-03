@@ -9,5 +9,5 @@ REQUISITOS PARA USO E COMO USAR
 <li>TER XAMPP INSTALADADO NA MAQUINA</li>
 <li>TER INSTALADO O GHOSTSCRIPT</li>
 <li>TER INSTALADO A BIBLIOTECA IMAGICK</li>
-</ul>
+</ul> <br />
 ACESSAR A SEGUINTE URL: http://localhost/SimpleCertificationGenerator/html/gerarCertificado.html
