@@ -400,11 +400,10 @@
     <input type="range" class="form-control-range" id="formControlRange">
             <label for="formControlRange">Eixo Y</label>
     <input type="range" class="form-control-range" id="formControlRange">
-            <img src="../certificado-base.jpg"
-            height="250px" width="350px" class="center">
+		<div id="certificado"></div>
             <div class="buttonSlot">
-            <button class="formButton">Gerar JPEG</button>
-            <button class="formButton">Gerar PDF</button>
+            <a href="../certificado/certificado.jpg""><button class="formButton">Gerar JPEG</button></a>
+            <a href="../certificado/certificado.pdf""><button class="formButton">Gerar PDF</button></a>
             <a href="gerarCertificado.html"><button class="formButton">Retornar</button></a>
           </div>
 
@@ -449,18 +448,19 @@
 
 <script type="text/javascript" src="../js/abreModal.js"></script>
 <script>
-   $("#myForm").submit(function(e) {
+   $("form#myForm").submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
 
 
-    var form = $(this);
-    var url = form.attr('action');
+	var formData = new FormData(this);
 
     $.ajax({
            type: "POST",
            url: "../php/imprimirCertificado.php",
-           data: form.serialize(), // serializes the form's elements.
+           data: formData,
            success: function(data)
            {
+		    $('#certificado').html('<img id="responsivo" height="250px" width="500px" src="data:image/jpeg;base64,' + data + '" />');
             var typed2 = new Typed('#visualizacao', {
     strings: ["Visualização"],
     typeSpeed: 40,
@@ -472,11 +472,14 @@
             $('.visualizaCertificado').css("display", "block");
 
                // show response from the php script.
-           }
+           },
+		cache: false,
+        contentType: false,
+        processData: false
          });
 
-    e.preventDefault(); // avoid to execute the actual submit of the form.
 });
+
 </script>
 </body>
 </html>
