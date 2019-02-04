@@ -11,6 +11,9 @@ session_start();
         mkdir($diretorioFonte, 0700);
 		copy('../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf');
         }
+	if (!file_exists($diretorioFonte .'/DancingScript-Regular.ttf')){
+	copy('../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf');
+	}
 		
 // recebendo parametros formulario
     $nomeCertificando = $_POST['nome-certificando'];
@@ -19,8 +22,8 @@ session_start();
     $eixoY = (int)$_POST['eixo-y'];
 	
     // fonte padrão
-    $fontePadrao =__DIR__ .'/fontes/DancingScript-Regular.ttf';
-	//echo $fontePadrao;exit;
+    $fontePadrao = 'fontes/DancingScript-Regular.ttf';
+
     // upload do certificado 
 
     unset($_SESSION['imagem']);
@@ -32,20 +35,23 @@ session_start();
 
     $uploadfontefile = $diretorioFonte.'/'. basename($_FILES['fonteAnexo']['name']);
     move_uploaded_file($_FILES['fonteAnexo']['tmp_name'], $uploadfontefile);
-	// echo __DIR__ . '/'.$uploadfontefile;
+	 //echo $uploadfontefile;exit;
+	 // echo '-----------------------------------------------------';
 	// echo ' ';
-	// echo $fontePadrao;exit;
+	 //echo $fontePadrao;exit;
 	
       // tratando parametros passados vazios
       if (empty($tamanhoFonte)) $tamanhoFonte ?: $tamanhoFonte = 22;
       if (empty($eixoX)) $eixoX ?: $eixoX = 480;
       if (empty($eixoY)) $eixoY ?: $eixoY = 320;
-	  if (!empty($uploadfontefile)){
+	  if ($uploadfontefile != 'fontes/'){
 		  $fonte =  __DIR__ .'/'. $uploadfontefile;
 	  }
 	  else{
-	  $fonte = $fontePadrao;
+	  $fonte = __DIR__ .'/'. $fontePadrao;
 	  }
+	  //echo $fonte;
+	  // exit;
 	  
 
     $output = shell_exec( 'gswin64c -sDEVICE=jpeg -r300 -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=../certificado/certificado.jpg ../certificado/'.$nomeArquivo.'');
