@@ -73,5 +73,11 @@ $('#inputCert').on('change',function(){
                 //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(fileName);
             })
+			$('#inputFonte').on('change',function(){
+                //get the file name
+                var fileName = document.getElementById("inputFonte").files[0].name;
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            })
 
 
