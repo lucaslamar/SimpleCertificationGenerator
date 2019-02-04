@@ -25,20 +25,20 @@ session_start();
     $fontePadrao = 'fontes/DancingScript-Regular.ttf';
 
     // upload do certificado 
-
+    if( in_array( $_FILES['certificadoAnexo']['type'], array("application/pdf") ) && $_FILES['certificadoAnexo']['size'] <= 4e+6 ){
     unset($_SESSION['imagem']);
     $uploadfile = $diretorioCertificado . basename($_FILES['certificadoAnexo']['name']);
     move_uploaded_file($_FILES['certificadoAnexo']['tmp_name'], $uploadfile);
-	$nomeArquivo = $_FILES['certificadoAnexo']['name'];
+    $nomeArquivo = $_FILES['certificadoAnexo']['name'];
+    }
+    else{
+
+    }
 	
     //uploadFonte
 
     $uploadfontefile = $diretorioFonte.'/'. basename($_FILES['fonteAnexo']['name']);
     move_uploaded_file($_FILES['fonteAnexo']['tmp_name'], $uploadfontefile);
-	 //echo $uploadfontefile;exit;
-	 // echo '-----------------------------------------------------';
-	// echo ' ';
-	 //echo $fontePadrao;exit;
 	
       // tratando parametros passados vazios
       if (empty($tamanhoFonte)) $tamanhoFonte ?: $tamanhoFonte = 22;
