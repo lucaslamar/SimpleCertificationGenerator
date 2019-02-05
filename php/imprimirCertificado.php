@@ -34,13 +34,19 @@ session_start();
     else{
 	header('HTTP/1.1 406 Internal Server Error');
 	die;
+
     }
 	
     //uploadFonte
 
-    $uploadfontefile = $diretorioFonte.'/'. basename($_FILES['fonteAnexo']['name']);
-    move_uploaded_file($_FILES['fonteAnexo']['tmp_name'], $uploadfontefile);
-	
+    if( in_array( $_FILES['fonteAnexo']['type'], array("application/octet-stream") ) ){
+        $uploadfontefile = $diretorioFonte . basename($_FILES['fonteAnexo']['name']);
+        move_uploaded_file($_FILES['fonteAnexo']['tmp_name'], $uploadfontefile);
+        
+}else{
+    header('HTTP/1.1 406 Internal Server Error');
+	die;     
+}
       // tratando parametros passados vazios
       if (empty($tamanhoFonte)) $tamanhoFonte ?: $tamanhoFonte = 22;
       if (empty($eixoX)) $eixoX ?: $eixoX = 480;
