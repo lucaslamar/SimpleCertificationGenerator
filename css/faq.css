@@ -15,6 +15,10 @@ nav {
     top: 0; 
 
 }
+a { color: inherit; } 
+a:hover {
+    color: inherit;
+}
 
 nav a {
     display: block;
@@ -141,7 +145,7 @@ ul {
     height: 42px;
     background: rgb(192,192,192, 0.3); 
     border-radius: 5px;
-    transition: all 800ms ease; 
+    transition: all 650ms ease; 
 }
 .infoItem:hover::before {
     width: 96%;
@@ -213,7 +217,7 @@ a.active:hover {
 }
 
 .centerCard {
-    margin-top: 40px;
+    margin-top: 15vh;
     width: 100vw;
     height: 70vh;
 }
@@ -288,7 +292,7 @@ hr {
 @media (min-width: 1278px) and (max-width: 1920px) 
 {
     .centerCard {
-    margin-top: 8vh;
+    margin-top: 15vh;
     width: 100vw;
     height: 70vh;
 }
@@ -301,6 +305,7 @@ hr {
     height: 65%;
     box-shadow: 7px 11px 15px #2d2d2dee;
     /*animation: cardMoving 800ms;*/
+    margin-bottom: 45px;
 }
 
 .cardForm {

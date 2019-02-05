@@ -11,6 +11,9 @@ session_start();
         mkdir($diretorioFonte, 0700);
 		copy('../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf');
         }
+	if (!file_exists($diretorioFonte .'/DancingScript-Regular.ttf')){
+	copy('../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf');
+	}
 		
 // recebendo parametros formulario
     $nomeCertificando = $_POST['nome-certificando'];
@@ -19,33 +22,37 @@ session_start();
     $eixoY = (int)$_POST['eixo-y'];
 	
     // fonte padrão
-    $fontePadrao =__DIR__ .'/fontes/DancingScript-Regular.ttf';
-	//echo $fontePadrao;exit;
-    // upload do certificado 
+    $fontePadrao = 'fontes/DancingScript-Regular.ttf';
 
+    // upload do certificado 
+    if( in_array( $_FILES['certificadoAnexo']['type'], array("application/pdf") ) && $_FILES['certificadoAnexo']['size'] <= 4e+6 ){
     unset($_SESSION['imagem']);
     $uploadfile = $diretorioCertificado . basename($_FILES['certificadoAnexo']['name']);
     move_uploaded_file($_FILES['certificadoAnexo']['tmp_name'], $uploadfile);
-	$nomeArquivo = $_FILES['certificadoAnexo']['name'];
+    $nomeArquivo = $_FILES['certificadoAnexo']['name'];
+    }
+    else{
+	header('HTTP/1.1 406 Internal Server Error');
+	die;
+    }
 	
     //uploadFonte
 
     $uploadfontefile = $diretorioFonte.'/'. basename($_FILES['fonteAnexo']['name']);
     move_uploaded_file($_FILES['fonteAnexo']['tmp_name'], $uploadfontefile);
-	// echo __DIR__ . '/'.$uploadfontefile;
-	// echo ' ';
-	// echo $fontePadrao;exit;
 	
       // tratando parametros passados vazios
       if (empty($tamanhoFonte)) $tamanhoFonte ?: $tamanhoFonte = 22;
       if (empty($eixoX)) $eixoX ?: $eixoX = 480;
       if (empty($eixoY)) $eixoY ?: $eixoY = 320;
-	  if (!empty($uploadfontefile)){
+	  if ($uploadfontefile != 'fontes/'){
 		  $fonte =  __DIR__ .'/'. $uploadfontefile;
 	  }
 	  else{
-	  $fonte = $fontePadrao;
+	  $fonte = __DIR__ .'/'. $fontePadrao;
 	  }
+	  //echo $fonte;
+	  // exit;
 	  
 
     $output = shell_exec( 'gswin64c -sDEVICE=jpeg -r300 -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=../certificado/certificado.jpg ../certificado/'.$nomeArquivo.'');
