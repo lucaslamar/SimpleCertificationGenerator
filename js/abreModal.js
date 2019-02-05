@@ -9,6 +9,15 @@ Hello, there. My name is Arthur and let me show you a few features I've made in 
 var modal = document.getElementById("meuModal");
 var btn = document.getElementById("abreModal");
 
+var nomeCertificando = document.getElementById("nomCert");
+nomeCertificando.oninput = function() {autenticidadeNome()};
+function autenticidadeNome() {
+    var re = /^[çãáàéèêÇÃÁÀÉÈÊ'A-Za-z _]*[çãáàéèêÇÃÁÀÉÈÊ'A-Za-z][çãáàéèêÇÃÁÀÉÈÊ'A-Za-z _]*$/;
+    var nameField = document.getElementById("nomCert").value;
+    str = nameField;
+    var found = re.test(str);
+
+}
 
 
 //Now let's show the modal with an animation when the menu icon is clicked:

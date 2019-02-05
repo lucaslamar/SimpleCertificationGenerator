@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Gerador de Certificado</title>
-		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="shortcut icon" href="../favicon/favicon.png">
      <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
@@ -414,7 +414,7 @@
           <hr>
           <form enctype="multipart/form-data" method="POST" id="myForm">
             <div class="form-group">
-            <input class="form-control form-control-lg" name="nome-certificando" type="text" placeholder="Nome do certificando">
+            <input class="form-control form-control-lg" name="nome-certificando" type="text" placeholder="Nome do certificando" id="nomCert">
             <input class="form-control form-control-lg" name="tamanho-fonte" type="text" placeholder="Tamanho da fonte">
             <input class="form-control form-control-lg" name="eixo-x" type="text" placeholder="Eixo X">
             <input class="form-control form-control-lg" name="eixo-y" type="text" placeholder="Eixo Y">
@@ -433,9 +433,10 @@
 </div>
             <div class="buttonSlot">
 
-            <button type="submit" class="formButton">
+            <button type="submit" class="formButton" id="buttonDisappear">
               Gerar
             </button>
+            <div class="loadingFrame"></div>
             <!--<button type="submit" class="formButton">
               Visualizar
             </button>-->
@@ -453,7 +454,10 @@
 
 
 	var formData = new FormData(this);
+    $("#buttonDisappear").css("display", "none");
+    $(".loadingFrame").css("display", "block");
 
+  function showUp() {
     $.ajax({
            type: "POST",
            url: "../php/imprimirCertificado.php",
@@ -468,17 +472,24 @@
     fadeOut: true,
     loop: false
   });
+
             $( ".cardForm" ).remove();
             $('.visualizaCertificado').css("display", "block");
 
                // show response from the php script.
            },
+           error: function(data){
+       alert('O certificado não é um arquivo PDF!');
+       },
 		cache: false,
         contentType: false,
         processData: false
          });
+  }
+  setTimeout(showUp, 1000);
 
-});
+}); 
+
 
 </script>
 </body>
