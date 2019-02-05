@@ -9,15 +9,151 @@ Hello, there. My name is Arthur and let me show you a few features I've made in 
 var modal = document.getElementById("meuModal");
 var btn = document.getElementById("abreModal");
 
+
+
+var trueInput = [0, 0, 0, 0];
+var botao = document.getElementById("buttonDisappear");
+botao.disabled = true;
+
+
 var nomeCertificando = document.getElementById("nomCert");
 nomeCertificando.oninput = function() {autenticidadeNome()};
 function autenticidadeNome() {
     var re = /^[çãáàéèêÇÃÁÀÉÈÊ'A-Za-z _]*[çãáàéèêÇÃÁÀÉÈÊ'A-Za-z][çãáàéèêÇÃÁÀÉÈÊ'A-Za-z _]*$/;
     var nameField = document.getElementById("nomCert").value;
-    str = nameField;
+    var str = nameField;
     var found = re.test(str);
-
+    if (!found)
+    {
+        trueInput[0] = 0;
+        document.getElementById("nomCertError").style.webkitAnimationName = 'cardMoving';
+        document.getElementById("nomCertError").style.webkitAnimationDuration = '.5s';
+        document.getElementById("nomCertError").style.display = "block";
+    }
+    else
+    {
+        trueInput[0] = 1;
+        document.getElementById("nomCertError").style.display = "none";
+    }
 }
+
+
+var fontSize = document.getElementById("fontSz");
+fontSize.oninput = function() {autenticidadeFonte()};
+function autenticidadeFonte() {
+    var re = /^[0-9]+([.][0-9]+)?$/;
+    var fontField = document.getElementById("fontSz").value;
+    var str = fontField;
+    var found = re.test(str);
+    if (!found)
+    {
+        trueInput[1] = 0;
+        document.getElementById("fontSzError").style.webkitAnimationName = 'cardMoving';
+        document.getElementById("fontSzError").style.webkitAnimationDuration = '.5s';
+        document.getElementById("fontSzError").style.display = "block";
+    }
+    else
+    {
+        trueInput[1] = 1;
+        document.getElementById("fontSzError").style.display = "none";
+
+    }
+}
+
+var xSide = document.getElementById("x");
+xSide.oninput = function() {autenticidadeEixoX()};
+function autenticidadeEixoX() {
+    var re = /^$|^[0-9]+([.][0-9]+)?$/;
+    var xSideField = document.getElementById("x").value;
+    var str = xSideField;
+    var found = re.test(str);
+    if (!found)
+    {
+        trueInput[2] = 0;
+        document.getElementById("xError").style.webkitAnimationName = 'cardMoving';
+        document.getElementById("xError").style.webkitAnimationDuration = '.5s';
+        document.getElementById("xError").style.display = "block";
+
+    }
+    else
+    {
+        trueInput[2] = 1;
+        document.getElementById("xError").style.display = "none";
+    }
+}
+
+var ySide = document.getElementById("y");
+ySide.oninput = function() {autenticidadeEixoY()};
+function autenticidadeEixoY() {
+    var re = /^$|^[0-9]+([.][0-9]+)?$/;
+    var ySideField = document.getElementById("y").value;
+    var str = ySideField;
+    var found = re.test(str);
+    if (!found)
+    {
+        trueInput[3] = 0;
+        document.getElementById("yError").style.webkitAnimationName = 'cardMoving';
+        document.getElementById("yError").style.webkitAnimationDuration = '.5s';
+        document.getElementById("yError").style.display = "block";
+    }
+    else
+    {
+        trueInput[3] = 1;
+        document.getElementById("yError").style.display = "none";
+    }
+}
+
+document.getElementById("myForm").addEventListener("keyup", function() {
+    if (trueInput[0] == 1 && trueInput[1] == 1 && trueInput[2] == 0 && trueInput[3] == 0)
+    {
+        document.getElementById("x").value = "";
+        document.getElementById("y").value = "";
+        botao.disabled = false;
+    }
+    else if (trueInput[0] == 1 && trueInput[1] == 1 && trueInput[2] == 1 && trueInput[3] == 1)
+    {
+        botao.disabled = false;
+
+    }
+    else
+    {
+        botao.disabled = true;
+    }
+});
+
+document.getElementById("btnDisabled").addEventListener("click", function() {
+    if (botao.disabled == true)
+    {
+        if (trueInput[0] == 0 && trueInput[1] == 0)
+        {
+            document.getElementById("nomCertError").style.webkitAnimationName = 'cardMoving';
+            document.getElementById("nomCertError").style.webkitAnimationDuration = '.5s';
+            document.getElementById("nomCertError").style.display = "block";
+            document.getElementById("fontSzError").style.webkitAnimationName = 'cardMoving';
+            document.getElementById("fontSzError").style.webkitAnimationDuration = '.5s';
+            document.getElementById("fontSzError").style.display = "block";
+            nomeCertificando.focus();
+        }
+        else if (trueInput[0] == 0)
+        {
+            nomeCertificando.focus();
+            document.getElementById("nomCertError").style.webkitAnimationName = 'cardMoving';
+            document.getElementById("nomCertError").style.webkitAnimationDuration = '.5s';
+            document.getElementById("nomCertError").style.display = "block";
+        }
+        else if (trueInput[1] == 0)
+        {
+            fontSize.focus();
+            document.getElementById("fontSzError").style.webkitAnimationName = 'cardMoving';
+            document.getElementById("fontSzError").style.webkitAnimationDuration = '.5s';
+            document.getElementById("fontSzError").style.display = "block";
+        }
+
+        else {
+            nomeCertificando.focus();
+        }
+    }
+});
 
 
 //Now let's show the modal with an animation when the menu icon is clicked:

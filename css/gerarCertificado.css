@@ -62,6 +62,11 @@ nav a {
         margin-left: -100%;
       }
 }
+@keyframes run {
+    0% { left: 0;}
+    50%{ left : 100%;}
+    100%{ left: 0;}
+}
 .modalSlideBack {
     animation:slideBack .5s;
 }
@@ -341,7 +346,18 @@ hr {
 }
 .form-group {
     animation: cardMoving 3s;
+    -webkit-transition: all .6s;
+    transition: all 650ms ease;    
 }
+
+.error-message {
+    margin-left: 15px;
+    display: none;
+}
+#optionalField {
+    margin-left: 15px;
+}
+
 
 .typed-cursor{
    opacity: 0;
@@ -419,3 +435,10 @@ border-bottom:2px solid #EA2027 ;
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+#teste:focus {
+    border-bottom:2px solid #EA2027 ;
+    box-shadow: 0 0 11px #2d2d2dee;
+}
+
+
