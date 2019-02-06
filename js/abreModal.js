@@ -3,6 +3,8 @@ Hello, there. My name is Arthur and let me show you a few features I've made in 
 */
 
 
+
+
 //First of all, let's design an animation for our modal:
 
 //Let's get the id of the elements we want to animate.
@@ -15,7 +17,7 @@ var trueInput = [0, 0, 0, 0];
 var botao = document.getElementById("buttonDisappear");
 botao.disabled = true;
 
-
+var nomCertErrorDis = 0;
 var nomeCertificando = document.getElementById("nomCert");
 nomeCertificando.oninput = function() {autenticidadeNome()};
 function autenticidadeNome() {
@@ -33,9 +35,11 @@ function autenticidadeNome() {
     else
     {
         trueInput[0] = 1;
-        document.getElementById("nomCertError").style.display = "none";
+        $("#nomCertError").fadeOut(500);
     }
 }
+
+
 
 
 var fontSize = document.getElementById("fontSz");
@@ -55,7 +59,7 @@ function autenticidadeFonte() {
     else
     {
         trueInput[1] = 1;
-        document.getElementById("fontSzError").style.display = "none";
+        $("#fontSzError").fadeOut(500);
 
     }
 }
@@ -78,7 +82,7 @@ function autenticidadeEixoX() {
     else
     {
         trueInput[2] = 1;
-        document.getElementById("xError").style.display = "none";
+        $("#xError").fadeOut(500);
     }
 }
 
@@ -99,7 +103,7 @@ function autenticidadeEixoY() {
     else
     {
         trueInput[3] = 1;
-        document.getElementById("yError").style.display = "none";
+        $("#yError").fadeOut(500);
     }
 }
 
@@ -149,11 +153,36 @@ document.getElementById("btnDisabled").addEventListener("click", function() {
             document.getElementById("fontSzError").style.display = "block";
         }
 
-        else {
-            nomeCertificando.focus();
+        else if (trueInput[2] == 0){
+            xSide.focus();
+        }
+        else if (trueInput[3] == 0){
+            ySide.focus();
         }
     }
 });
+
+var fontSizeNow = document.getElementById("fontSzNow");
+fontSizeNow.oninput = function() {autenticidadeFonteAtual()};
+function autenticidadeFonteAtual() {
+    var re = /^[0-9]+([.][0-9]+)?$/;
+    var fontField = document.getElementById("fontSzNow").value;
+    var str = fontField;
+    var found = re.test(str);
+    if (!found)
+    {
+        document.getElementById("fontSzNowError").style.webkitAnimationName = 'cardMoving';
+        document.getElementById("fontSzNowError").style.webkitAnimationDuration = '.5s';
+        document.getElementById("fontSzNowError").style.display = "block";
+    }
+    else
+    {
+        $("#fontSizeNow").fadeOut(500);
+
+    }
+}
+
+
 
 
 //Now let's show the modal with an animation when the menu icon is clicked:

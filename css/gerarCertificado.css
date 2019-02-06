@@ -1,4 +1,8 @@
-
+a:focus{
+    background: #d9141bff;
+    color: #ffffff;
+    max-height: 50px;
+}
 .material-icons {
     color: #ffffff;
     cursor: pointer;
@@ -354,6 +358,16 @@ hr {
     margin-left: 15px;
     display: none;
 }
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.error-message .hidden {
+    display: none !important;
+  visibility: hidden;
+  transition: all 650ms ease; 
+}
 #optionalField {
     margin-left: 15px;
 }
@@ -364,6 +378,9 @@ hr {
     display: none;
 }
 .form-control:focus {
+    border-top: none;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
     outline: none !important;
     border-bottom:2px solid #EA2027 !important;
     box-shadow: 0 0 11px #2d2d2dee;
@@ -396,7 +413,7 @@ hr {
     border-radius: 5px;
     cursor: pointer;
 }
-.custom-file-input ~ .custom-file-label:after:focus {
+.custom-file-input ~ .custom-file-label::focus {
 border-bottom:2px solid #EA2027 ;
     box-shadow: 0 0 11px #2d2d2dee;
 }
@@ -441,4 +458,23 @@ border-bottom:2px solid #EA2027 ;
     box-shadow: 0 0 11px #2d2d2dee;
 }
 
+#certificado {
+    margin-top: 14px;
+}
+
+.custom-file-input:valid:focus ~ .custom-file-label, .custom-file-input.is-valid:focus ~ .custom-file-label {
+  border-top: none;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  border-bottom:2px solid #EA2027 ;
+    box-shadow: 0 0 11px #2d2d2dee;
+}
+
+.custom-file-input:invalid:focus ~ .custom-file-label, .custom-file-input.is-invalid:focus ~ .custom-file-label {
+ border-top: none;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+ border-bottom:2px solid #EA2027 ;
+    box-shadow: 0 0 11px #2d2d2dee;
+}
 

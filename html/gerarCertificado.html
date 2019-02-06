@@ -16,6 +16,7 @@
 		<link href="https://fonts.googleapis.com/css?family=PT+Mono|Roboto" rel="stylesheet"> 
 		<link rel="stylesheet" type="text/css" href="../css/gerarCertificado.css">
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -391,6 +392,7 @@
 				</i></a>
 			<a><p id="logo">Gerador de certificados</p></a>
 		</nav>
+
     <div class="centerCard">
       <div class="myCard">
           <div class="visualizaCertificado">
@@ -400,6 +402,8 @@
     <input type="range" class="form-control-range" id="formControlRange">
             <label for="formControlRange">Eixo Y</label>
     <input type="range" class="form-control-range" id="formControlRange">
+    <input class="form-control form-control-lg" name="tamanhoFonteAtual" type="number" min="1" placeholder="Tamanho da fonte" id="fontSzNow">
+            <small id="fontSzNowError" class="form-text text-muted error-message">O tamanho é inválido!</small>
 		<div id="certificado"></div>
             <div class="buttonSlot">
             <a href="../certificado/certificado.jpg""><button class="formButton">Gerar JPEG</button></a>
@@ -415,15 +419,15 @@
           <form enctype="multipart/form-data" method="POST" id="myForm">
             <div class="form-group">
             <input class="form-control form-control-lg" name="nome-certificando" type="text" placeholder="Nome do certificando" id="nomCert">
-            <small id="nomCertError" class="form-text text-muted error-message">O nome não é válido!</small>
-            <input class="form-control form-control-lg" name="tamanho-fonte" type="text" placeholder="Tamanho da fonte" id="fontSz">
+            <small id="nomCertError" class="form-text text-muted error-message">O nome é inválido!</small>
+            <input class="form-control form-control-lg" name="tamanho-fonte" type="number" min="1" placeholder="Tamanho da fonte" id="fontSz">
             <small id="fontSzError" class="form-text text-muted error-message">O tamanho é inválido!</small>
-            <input class="form-control form-control-lg" name="eixo-x" type="text" placeholder="Eixo X" id="x">
+            <input class="form-control form-control-lg" name="eixo-x" type="number" min="0" placeholder="Eixo X" id="x">
             <small id="xError" class="form-text text-muted error-message">O valor é inválido!</small>
-            <input class="form-control form-control-lg" name="eixo-y" type="text" placeholder="Eixo Y" id="y">
+            <input class="form-control form-control-lg" name="eixo-y" type="number" min="0" placeholder="Eixo Y" id="y">
             <small id="yError" class="form-text text-muted error-message">O valor é inválido!</small>
             <div class="custom-file">
-    <input type="file" class="form-control custom-file-input" name="certificadoAnexo" id="inputCert" lang="es">
+    <input type="file" accept="application/pdf" class="form-control custom-file-input" name="certificadoAnexo" id="inputCert" lang="es">
     <label class="custom-file-label form-control" for="validatedCustomFile">Escolha o certificado</label>
     <div class="invalid-feedback">Certificado Inválido!</div>
   </div>
@@ -461,6 +465,7 @@
 	var formData = new FormData(this);
     $("#buttonDisappear").css("display", "none");
     $(".loadingFrame").css("display", "block");
+    //$('#meuTeste').toast('show');
 
   function showUp() {
     $.ajax({
