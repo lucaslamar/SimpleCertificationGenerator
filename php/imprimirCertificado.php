@@ -1,19 +1,12 @@
 <?php
 session_start();
     // verificando se o diretorio existe e criando se nescessario
+    require_once('funcoes.php');
+    $funcao = new Funcoes(); 
 
-    $diretorioCertificado = "../certificado/";
-    if (!file_exists($diretorioCertificado)){
-        mkdir($diretorioCertificado, 0700);
-        }
-	$diretorioFonte = "fontes";
-    if (!file_exists($diretorioFonte)){
-        mkdir($diretorioFonte, 0700);
-		copy('../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf');
-        }
-	if (!file_exists($diretorioFonte .'/DancingScript-Regular.ttf')){
-	copy('../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf');
-	}
+    
+
+
 		
 // recebendo parametros formulario
     $nomeCertificando = $_POST['nome-certificando'];
