@@ -65,7 +65,15 @@ function verificaAnexo(){
 }
     
 function verificaFonte(){
-    if( in_array( $_FILES['fonteAnexo']['type'], array("application/octet-stream") ) ){
+
+    $abrirArquivoFonteUploadFile = fopen(_FILES['fonteAnexo']['tmp_name'], "r");
+    $cincoBytes = fread($abrirArquivoFonteUploadFile, 5);
+    fclose($abrirArquivoFonteUploadFile);
+    bin2hex ( $cincoBytes);
+
+
+    if( in_array( $_FILES['fonteAnexo']['type'], array("application/octet-stream") ) && $cincoBytes == "0001000000" ){
+        return 'é fonte';
         $uploadfontefile = $diretorioFonte . basename($_FILES['fonteAnexo']['name']);
         move_uploaded_file($_FILES['fonteAnexo']['tmp_name'], $uploadfontefile);    
     }

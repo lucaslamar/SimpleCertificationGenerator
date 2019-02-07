@@ -3,6 +3,7 @@ session_start();
     // Chamando o arquivo funcoes.php && instanciando a classe Funcoes que atribuiba a variavel funcao 
     require_once('funcoes.php');
     $funcao = new Funcoes(); 
+    $teste = $funcao -> verificaFonte();
 		
 // recebendo parametros formulario
     $nomeCertificando = $_POST['nome-certificando'];
