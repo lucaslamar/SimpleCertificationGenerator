@@ -1,6 +1,7 @@
 <?php
 class funcoes{
 
+// Verifica qual a versão do IMAGICK
     function verificaimagick(){
         $versaoAnterior7 = shell_exec( 'convert -version');
         $versaoSuperior7 = shell_exec( 'magick convert -version');
@@ -16,22 +17,23 @@ class funcoes{
         }
         
     }
-    
+    // VERIFICA SE OS DIRETORIOS "certificado e fonte existem, caso eles não existam crios"
     function verificaPastas(){
-        $diretorioCertificado = "../certificado/";
+        $diretorioCertificado = __DIR__.DIRECTORY_SEPARATOR."certificado".DIRECTORY_SEPARATOR; // "../certificado/
         if (!file_exists($diretorioCertificado)){
             mkdir($diretorioCertificado, 0700);
         }
         $diretorioFonte = "fontes";
         if (!file_exists($diretorioFonte)){
             mkdir($diretorioFonte, 0700);
-            copy('../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf');
+            copy(__DIR__.DIRECTORY_SEPARATOR."fontes".DIRECTORY_SEPARATOR."DancingScript-Regular.ttf",$diretorioFonte.DIRECTORY_SEPARATOR."DancingScript-Regular.ttf"); // ../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf
         }
-        if (!file_exists($diretorioFonte .'/DancingScript-Regular.ttf')){
-         copy('../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf');
+        if (!file_exists($diretorioFonte . DIRECTORY_SEPARATOR. "DancingScript-Regular.ttf")){
+         copy(__DIR__.DIRECTORY_SEPARATOR."fontes".DIRECTORY_SEPARATOR."DancingScript-Regular.ttf",$diretorioFonte.DIRECTORY_SEPARATOR."DancingScript-Regular.ttf"); // '../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf'
      }
  }
  
+ // Verifica qual a versao do Ghostscript 64 || 32 para Windows ou se trata de um Unix
  function verificaGhostscript(){
     $win64 = shell_exec( 'gswin64c -version');
     $win32 = shell_exec( 'gswin32c -version');
@@ -49,7 +51,7 @@ class funcoes{
         return NULL;
     }
 }
-    
+    // Verifica se o arquivo inserido se trata de um PDF && se o mesmo possiu um tamanho de 4e+6 bytes
 function verificaAnexo(){
     if( in_array( $_FILES['certificadoAnexo']['type'], array("application/pdf") ) && $_FILES['certificadoAnexo']['size'] <= 4e+6 ){
         $uploadfile = $diretorioCertificado . basename($_FILES['certificadoAnexo']['name']);
@@ -74,13 +76,13 @@ function verificaFonte(){
 }
 
 function geraPDF(){
-    $output = shell_exec( "magick convert ../certificado". DIRECTORY_SEPARATOR ."certificado.jpg ../certificado". DIRECTORY_SEPARATOR ."certificado.pdf");
+    $output = shell_exec( "magick convert".__DIR__. "certificado". DIRECTORY_SEPARATOR ."certificado.jpg". __DIR__. "certificado". DIRECTORY_SEPARATOR ."certificado.pdf");
 }
 
 function escreveJPEG(){
     
-    $output = shell_exec( 'gswin64c -sDEVICE=jpeg -r300 -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=../certificado/certificado.jpg ../certificado/'.$nomeArquivo.'');
-    $imge = imagecreatefromjpeg('../certificado/certificado.jpg');
+    $output = shell_exec( 'gswin64c -sDEVICE=jpeg -r300 -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile='. __DIR__.'certificado'.DIRECTORY_SEPARATOR. 'certificado.jpg' .__DIR__. DIRECTORY_SEPARATOR. 'certificado'.DIRECTORY_SEPARATOR.$nomeArquivo.'');
+    $imge = imagecreatefromjpeg(__DIR__.DIRECTORY_SEPARATOR."certificado".DIRECTORY_SEPARATOR."certificado.jpg"); //../certificado/certificado.jpg
     $titleColor = imagecolorallocate($imge, 0, 0, 0);
     $gray = imagecolorallocate($imge, 120, 120, 120);
 
@@ -100,7 +102,7 @@ function escreveJPEG(){
     ob_end_clean (); 
     $_SESSION['imagem'] = base64_encode ($image_data);
     echo $_SESSION['imagem'];
-    imagejpeg($imge, "../certificado".DIRECTORY_SEPARATOR."certificado.jpg",60); 
+    imagejpeg($imge,__DIR__.DIRECTORY_SEPARATOR."certificado".DIRECTORY_SEPARATOR."certificado.jpg" ,60); // "../certificado".DIRECTORY_SEPARATOR."certificado.jpg",60
     
 }
 
