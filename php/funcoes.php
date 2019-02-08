@@ -1,4 +1,5 @@
 <?php
+session_start();
 class funcoes{
 
 // Verifica qual a versão do IMAGICK
@@ -52,39 +53,38 @@ class funcoes{
     }
 }
     // Verifica se o arquivo inserido se trata de um PDF && se o mesmo possiu um tamanho de 4e+6 bytes
-function verificaAnexo(){
+function verificaAnexo($teste){
     if( in_array( $_FILES['certificadoAnexo']['type'], array("application/pdf") ) && $_FILES['certificadoAnexo']['size'] <= 4e+6 ){
         $uploadfile = $diretorioCertificado . basename($_FILES['certificadoAnexo']['name']);
         move_uploaded_file($_FILES['certificadoAnexo']['tmp_name'], $uploadfile);
         $nomeArquivo = $_FILES['certificadoAnexo']['name'];
     }
     else{
-        header('HTTP/1.1 406 Internal Server Error');
+        header('HTTP/1.1 406 O arquivo informado não é um arquivo PDF válido!');
         die;
     }
 }
     
-function verificaFonte(){
-
-    $abrirArquivoFonteUploadFile = fopen(_FILES['fonteAnexo']['tmp_name'], "r");
+function verificaFonte($fonte){
+    $abrirArquivoFonteUploadFile = fopen($fonte, "r");
     $cincoBytes = fread($abrirArquivoFonteUploadFile, 5);
     fclose($abrirArquivoFonteUploadFile);
-    bin2hex ( $cincoBytes);
+	$verificaFonte = bin2hex ($cincoBytes);
 
-
-    if( in_array( $_FILES['fonteAnexo']['type'], array("application/octet-stream") ) && $cincoBytes == "0001000000" ){
-        return 'é fonte';
-        $uploadfontefile = $diretorioFonte . basename($_FILES['fonteAnexo']['name']);
-        move_uploaded_file($_FILES['fonteAnexo']['tmp_name'], $uploadfontefile);    
-    }
-    else{
-        header('HTTP/1.1 406 Internal Server Error');
-        die;     
-    }
+     if( in_array( $_FILES['fonteAnexo']['type'], array("application/octet-stream") ) && $verificaFonte == "0001000000" || $verificaFonte == "4f54544f00" || $verificaFonte == "774f464600" || $verificaFonte == "774f463200" || $verificaFonte == "3c3f786d6c" ){
+         $uploadfontefile = $diretorioFonte . basename($_FILES['fonteAnexo']['name']);
+         move_uploaded_file($_FILES['fonteAnexo']['tmp_name'], $uploadfontefile);  
+     }
+     else{
+		 
+         header('HTTP/1.1 415 '.utf8_decode('O arquivo informado não é um arquivo de fonte válido!').'');
+         die;     
+     }
 }
 
 function geraPDF(){
     $output = shell_exec( "magick convert".__DIR__. "certificado". DIRECTORY_SEPARATOR ."certificado.jpg". __DIR__. "certificado". DIRECTORY_SEPARATOR ."certificado.pdf");
+    unset($_SESSION['gerarIRT']);
 }
 
 function escreveJPEG(){

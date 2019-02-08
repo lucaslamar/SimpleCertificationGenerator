@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Gerador de Certificado</title>
 		<link rel="shortcut icon" href="../favicon/favicon.png">
@@ -474,6 +474,7 @@
            data: formData,
            success: function(data)
            {
+		   console.log(data);
 		    $('#certificado').html('<img id="responsivo" height="225px" width="100%" src="data:image/jpeg;base64,' + data + '" />');
             var typed2 = new Typed('#visualizacao', {
     strings: ["Visualização"],
@@ -489,7 +490,7 @@
                // show response from the php script.
            },
            error: function(data){
-            alert("O certificado não é um arquivo pdf!");
+            alert(data.statusText);
             $("#inputCert").focus();
             $(".loadingFrame").css("display", "none");
             $("#buttonDisappear").css("display", "block");
