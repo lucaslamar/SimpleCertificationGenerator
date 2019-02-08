@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once('funcoes.php');
 $funcao = new Funcoes(); 
@@ -22,6 +23,8 @@ if (empty($eixoX)) $eixoX ?: $eixoX = 480;
 if (empty($eixoY)) $eixoY ?: $eixoY = 320;
 $dados = [$eixoX,$eixoY,$tamanhoFonte,$nomeCertificando,$verificaFonte,$verificaGhostscript,$verificaAnexo];
 $verificaAnexo = $funcao -> escreveJPEG($dados);
+$verificaAnexo = $funcao -> geraPDF($verificaimagick);
+
 // if ($_SESSION['gerarIRT'] === true){
 // $teste = $funcao -> gerarIRT();
 // }

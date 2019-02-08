@@ -7,10 +7,10 @@ class funcoes{
         $versaoSuperior7 = shell_exec( 'magick convert -version');
         
         if ($versaoAnterior7 != NULL){
-            return 'anterior';
+            return 'convert ';
         }
         else if ($versaoSuperior7 != NULL){
-            return 'superior';
+            return 'magick convert ';
         }
         else{
         header('HTTP/1.1 415 Por favor instale o ImageImagick para continuar! / Please install ImageImagick to continue!');
@@ -85,8 +85,8 @@ function verificaFonte($fonte){
      }
 }
 
-function geraPDF(){
-    $output = shell_exec( "magick convert".__DIR__. "certificado". DIRECTORY_SEPARATOR ."certificado.jpg". __DIR__. "certificado". DIRECTORY_SEPARATOR ."certificado.pdf");
+function geraPDF($versao){
+    $output = shell_exec($versao .__DIR__ . DIRECTORY_SEPARATOR ."certificado". DIRECTORY_SEPARATOR ."certificado.jpg ". __DIR__. DIRECTORY_SEPARATOR ."certificado". DIRECTORY_SEPARATOR ."certificado.pdf");
     unset($_SESSION['gerarIRT']);
 }
 
