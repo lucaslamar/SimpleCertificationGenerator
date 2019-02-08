@@ -116,6 +116,13 @@ function escreveJPEG($dados){
     
 }
 
+    function apagaArquivos(){
+        $diretorioCertificado = __DIR__.DIRECTORY_SEPARATOR."php".DIRECTORY_SEPARATOR."certificado". DIRECTORY_SEPARATOR;
+        $diretorioFonte = __DIR__.DIRECTORY_SEPARATOR."php".DIRECTORY_SEPARATOR."fontes". DIRECTORY_SEPARATOR;
+        array_map('unlink', glob(__DIR__ . DIRECTORY_SEPARATOR.$diretorioCertificado .'*' .'*'));
+        array_map('unlink', glob(__DIR__ . DIRECTORY_SEPARATOR.$diretorioFonte .'*' .'*'));
+    }
+
     function gerarIRT(){
         
 }
