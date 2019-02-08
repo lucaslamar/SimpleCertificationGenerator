@@ -1,5 +1,4 @@
 <?php
-session_start();
 class funcoes{
 
 // Verifica qual a versão do IMAGICK
@@ -14,24 +13,23 @@ class funcoes{
             return 'superior';
         }
         else{
-            return NULL;
+        header('HTTP/1.1 415 Por favor instale o ImageImagick para continuar! / Please install ImageImagick to continue!');
+        die;
         }
         
     }
     // VERIFICA SE OS DIRETORIOS "certificado e fonte existem, caso eles não existam crios"
     function verificaPastas(){
         $diretorioCertificado = __DIR__.DIRECTORY_SEPARATOR."certificado".DIRECTORY_SEPARATOR; // "../certificado/
+        $diretorioFonte = __DIR__.DIRECTORY_SEPARATOR."fontes".DIRECTORY_SEPARATOR; // "../fontes/
+        $diretorioFonteArquivo = __DIR__.DIRECTORY_SEPARATOR."fontes".DIRECTORY_SEPARATOR."DancingScript-Regular.ttf"; // "../fontes/
+        $diretorioFonteRaiz = dirname(__DIR__, 1).DIRECTORY_SEPARATOR."fontes".DIRECTORY_SEPARATOR."DancingScript-Regular.ttf"; // "../fontes/
         if (!file_exists($diretorioCertificado)){
             mkdir($diretorioCertificado, 0700);
         }
-        $diretorioFonte = "fontes";
         if (!file_exists($diretorioFonte)){
             mkdir($diretorioFonte, 0700);
-            copy(__DIR__.DIRECTORY_SEPARATOR."fontes".DIRECTORY_SEPARATOR."DancingScript-Regular.ttf",$diretorioFonte.DIRECTORY_SEPARATOR."DancingScript-Regular.ttf"); // ../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf
         }
-        if (!file_exists($diretorioFonte . DIRECTORY_SEPARATOR. "DancingScript-Regular.ttf")){
-         copy(__DIR__.DIRECTORY_SEPARATOR."fontes".DIRECTORY_SEPARATOR."DancingScript-Regular.ttf",$diretorioFonte.DIRECTORY_SEPARATOR."DancingScript-Regular.ttf"); // '../fontes/DancingScript-Regular.ttf', $diretorioFonte .'/DancingScript-Regular.ttf'
-     }
  }
  
  // Verifica qual a versao do Ghostscript 64 || 32 para Windows ou se trata de um Unix
@@ -40,32 +38,36 @@ class funcoes{
     $win32 = shell_exec( 'gswin32c -version');
     $unix = shell_exec( 'gs -version');
     if ($win64 != NULL){
-        return '64';
+        return 'gswin64c';
     }
     else if ($win32 != NULL){
-        return '32';
+        return 'gswin32c';
     }
     else if ($unix != NULL){
-        return 'Unix';
+        return 'gs';
     }
     else{
-        return NULL;
+        header('HTTP/1.1 415 Por favor, instale o Ghostscript para continuar! / Please Install Ghostscript to continue!');
+        die;
     }
 }
     // Verifica se o arquivo inserido se trata de um PDF && se o mesmo possiu um tamanho de 4e+6 bytes
 function verificaAnexo($teste){
+    $diretorioCertificado = __DIR__.DIRECTORY_SEPARATOR."certificado".DIRECTORY_SEPARATOR; // "../certificado/
     if( in_array( $_FILES['certificadoAnexo']['type'], array("application/pdf") ) && $_FILES['certificadoAnexo']['size'] <= 4e+6 ){
         $uploadfile = $diretorioCertificado . basename($_FILES['certificadoAnexo']['name']);
         move_uploaded_file($_FILES['certificadoAnexo']['tmp_name'], $uploadfile);
         $nomeArquivo = $_FILES['certificadoAnexo']['name'];
+        return $nomeArquivo;
     }
     else{
-        header('HTTP/1.1 406 O arquivo informado não é um arquivo PDF válido!');
+        header('HTTP/1.1 415 '.utf8_decode('O arquivo informado não é um arquivo PDF válido! / The requested file is not a valid PDF file!'));
         die;
     }
 }
     
 function verificaFonte($fonte){
+    $diretorioFonte = __DIR__.DIRECTORY_SEPARATOR."fontes".DIRECTORY_SEPARATOR; // "../fontes/
     $abrirArquivoFonteUploadFile = fopen($fonte, "r");
     $cincoBytes = fread($abrirArquivoFonteUploadFile, 5);
     fclose($abrirArquivoFonteUploadFile);
@@ -74,10 +76,11 @@ function verificaFonte($fonte){
      if( in_array( $_FILES['fonteAnexo']['type'], array("application/octet-stream") ) && $verificaFonte == "0001000000" || $verificaFonte == "4f54544f00" || $verificaFonte == "774f464600" || $verificaFonte == "774f463200" || $verificaFonte == "3c3f786d6c" ){
          $uploadfontefile = $diretorioFonte . basename($_FILES['fonteAnexo']['name']);
          move_uploaded_file($_FILES['fonteAnexo']['tmp_name'], $uploadfontefile);  
+         $nomeFonte = $_FILES['fonteAnexo']['name'];
+         return $nomeFonte;
      }
      else{
-		 
-         header('HTTP/1.1 415 '.utf8_decode('O arquivo informado não é um arquivo de fonte válido!').'');
+         header('HTTP/1.1 415 '.utf8_decode('O arquivo informado não é um arquivo de fonte válido! / The requested file is not a valid font file!').'');
          die;     
      }
 }
@@ -87,9 +90,8 @@ function geraPDF(){
     unset($_SESSION['gerarIRT']);
 }
 
-function escreveJPEG(){
-    
-    $output = shell_exec( 'gswin64c -sDEVICE=jpeg -r300 -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile='. __DIR__.'certificado'.DIRECTORY_SEPARATOR. 'certificado.jpg' .__DIR__. DIRECTORY_SEPARATOR. 'certificado'.DIRECTORY_SEPARATOR.$nomeArquivo.'');
+function escreveJPEG($dados){
+    $output = shell_exec($dados[5] .' -sDEVICE=jpeg -r300 -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile='.__DIR__.DIRECTORY_SEPARATOR.'certificado'.DIRECTORY_SEPARATOR.'certificado.jpg ' .__DIR__.DIRECTORY_SEPARATOR.'certificado'.DIRECTORY_SEPARATOR.$dados[6].'');
     $imge = imagecreatefromjpeg(__DIR__.DIRECTORY_SEPARATOR."certificado".DIRECTORY_SEPARATOR."certificado.jpg"); //../certificado/certificado.jpg
     $titleColor = imagecolorallocate($imge, 0, 0, 0);
     $gray = imagecolorallocate($imge, 120, 120, 120);
@@ -99,7 +101,7 @@ function escreveJPEG(){
     //imagettftext(image, size, angle, x, y, color, fontfile, text)
     //imagettftext($imge, 32, 0, 100, 150, $titleColor, $fonteBevan, $nomeCertificado);
     
-    imagettftext($imge, $tamanhoFonte, 0, $eixoX, $eixoY, $titleColor, $fonte, $nomeCertificando);
+    imagettftext($imge, $dados[2], 0, $dados[0], $dados[1], $titleColor, $dados[4], $dados[3]);
     // imprime data atual se preciso        
     //imagestring($imge, 10, 0, 400, 380, $gray, $fontePlayBall, utf8_decode("Concluído em: ").date("d/m/Y"),$titleColor);
     //imagestring($imge, 3, 440, 410, utf8_decode("Concluido em : ") . date("d/m/Y"), $titleColor);

@@ -416,7 +416,7 @@
           <br>
           <span class="typed" id="requerimentos"></span>
           <hr>
-          <form enctype="multipart/form-data" method="POST" id="myForm">
+          <form enctype="multipart/form-data" autocomplete="off" method="POST" id="myForm">
             <div class="form-group">
             <input class="form-control form-control-lg" name="nome-certificando" type="text" placeholder="Nome do certificando" id="nomCert">
             <small id="nomCertError" class="form-text text-muted error-message">O nome é inválido!</small>
@@ -474,7 +474,6 @@
            data: formData,
            success: function(data)
            {
-		   console.log(data);
 		    $('#certificado').html('<img id="responsivo" height="225px" width="100%" src="data:image/jpeg;base64,' + data + '" />');
             var typed2 = new Typed('#visualizacao', {
     strings: ["Visualização"],
