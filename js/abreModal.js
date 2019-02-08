@@ -162,29 +162,6 @@ document.getElementById("btnDisabled").addEventListener("click", function() {
     }
 });
 
-var fontSizeNow = document.getElementById("fontSzNow");
-fontSizeNow.oninput = function() {autenticidadeFonteAtual()};
-function autenticidadeFonteAtual() {
-    var re = /^[0-9]+([.][0-9]+)?$/;
-    var fontField = document.getElementById("fontSzNow").value;
-    var str = fontField;
-    var found = re.test(str);
-    if (!found)
-    {
-        document.getElementById("fontSzNowError").style.webkitAnimationName = 'cardMoving';
-        document.getElementById("fontSzNowError").style.webkitAnimationDuration = '.5s';
-        document.getElementById("fontSzNowError").style.display = "block";
-    }
-    else
-    {
-        $("#fontSizeNow").fadeOut(500);
-
-    }
-}
-
-
-
-
 //Now let's show the modal with an animation when the menu icon is clicked:
 btn.onclick = function() {
     modal.style.webkitAnimationName = 'slide';
@@ -223,9 +200,9 @@ window.onclick = function (event){
     var getIcon = document.getElementsByClassName("infoItem active")[0];
     getPathIcon = getIcon.getElementsByTagName("path");
     //vamosVer.style.fill = "#EA2027";
-    for (n=0;n<=getPathIcon.length;n++)
+    for (n=0;n<getPathIcon.length;n++)
     {
-    getPathIcon[n].style.fill = "#EA2027"
+    getPathIcon[n].style.fill = "#EA2027";
     }
 
 }

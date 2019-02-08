@@ -399,15 +399,15 @@
             <span class="typed" id="visualizacao"></span>
             <hr>
             <label for="formControlRange">Eixo X</label>
-    <input type="range" class="form-control-range" id="formControlRange">
+    <input type="range" class="form-control-range" name="eixoXAtual" id="formControlRange">
             <label for="formControlRange">Eixo Y</label>
-    <input type="range" class="form-control-range" id="formControlRange">
-    <input class="form-control form-control-lg" name="tamanhoFonteAtual" type="number" min="1" placeholder="Tamanho da fonte" id="fontSzNow">
-            <small id="fontSzNowError" class="form-text text-muted error-message">O tamanho é inválido!</small>
+    <input type="range" class="form-control-range" name="eixoYAtual" id="formControlRange">            
+    <label for="formControlRange">Fonte</label>
+    <input type="range" class="form-control-range" name="fonteAtual" id="formControlRange">
 		<div id="certificado"></div>
             <div class="buttonSlot">
-            <a href="../certificado/certificado.jpg""><button class="formButton">Gerar JPEG</button></a>
-            <a href="../certificado/certificado.pdf""><button class="formButton">Gerar PDF</button></a>
+            <a href="../php/certificado/certificado.jpg" target="_blank"><button class="formButton">Gerar JPEG</button></a>
+            <a href="../php/certificado/certificado.pdf" target="_blank"><button class="formButton">Gerar PDF</button></a>
             <a href="gerarCertificado.html"><button class="formButton">Retornar</button></a>
           </div>
 
