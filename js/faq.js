@@ -1,22 +1,21 @@
 /*
-Hello, there. My name is Arthur and let me show you a few features I've made in this project! =)
+Olá, meu nome é Arthur e este é o meu código em JS. Neste código vamos inserir algumas funcionalidades extras ao site.
 */
 
 
-//First of all, let's design an animation for our modal:
-
-//Let's get the id of the elements we want to animate.
+//Agora, vamos começar a declarar as variáveis que vão atuar no modal.
 var modal = document.getElementById("meuModal");
 var btn = document.getElementById("abreModal");
 
-//Now let's show the modal with an animation when the menu icon is clicked:
+//É hora de apresentar o modal, quando o usuário clicar no ícone. Por meio de uma simples função podemos fazer isso:
 btn.onclick = function() {
     modal.style.webkitAnimationName = 'slide';
     modal.style.webkitAnimationDuration = '.5s';
     modal.style.display = "block";
   }
 
-//Let's create an animation when the user closes the modal by clicking outside the window:
+
+//Vamos agora fechar o modal quando o usuário clicar em alguma área fora do modal. Por meio de outra função simples:
 window.onclick = function (event){
   if (event.target == modal) {
     modal.style.webkitAnimationName = 'slideBack';
@@ -28,25 +27,25 @@ window.onclick = function (event){
 }
 
 
-//Now we have a few things to do when the page is finally loaded:
+//Agora é hora de trabalhar com alguns outros elementos quando o site é carregado, por meio da função window.onload:
   window.onload = function() { 
-// 1 - We're gonna set the class tag in the navigation drawer element which the user is currently on by adding the class "active" to that tag;
-    //Let's find the page which the user the user is right now and compare it to our list in the navigation bar
+//Primeiramente, vamos procurar pelo elemento na Navigation Drawer ao qual o usuário está atualmente acessando. Ao encontrarmos a classe em questão, adicionamos a classe "active" à tag âncora (<a></a>)
     var all_links = document.getElementById("navInfoMenu").getElementsByTagName("a"),
         i=0, len=all_links.length,
         full_path = location.href.split('#')[0]; 
 
-    // Loop through each link.
     for(; i<len; i++) {
         if(all_links[i].href.split("#")[0] == full_path) {
             all_links[i].className += " active";
             
         }
     }
-    //Good! Now it's time to change the icon in the class active to the color we want, by changing the "fill" attribute in each one of the path tags in our svg file!
+    
+
+
+    //Excelente! Agora vamos alterar o svg da classe que foi definida como "active", iterando pelos elementos da tag svg e modificando o valor "fill" para a cor desejada.
     var getIcon = document.getElementsByClassName("infoItem active")[0];
     getPathIcon = getIcon.getElementsByTagName("path");
-    //vamosVer.style.fill = "#EA2027";
     for (n=0;n<=getPathIcon.length;n++)
     {
     getPathIcon[n].style.fill = "#EA2027"
@@ -55,6 +54,10 @@ window.onclick = function (event){
 }
 
 
+
+
+//Eu estou usando uma biblioteca chamada Typed.JS para dar um efeito bonito de digitação às strings dos títulos de cada página. 
+//Aqui é uma pequena configuração para apresentar a string desejada, localizada no objeto "strings". 
 var typed = new Typed('#faqTag', {
     strings: ["FAQ"],
     typeSpeed: 40,

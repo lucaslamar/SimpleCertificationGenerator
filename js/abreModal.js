@@ -1,23 +1,31 @@
 /*
-Hello, there. My name is Arthur and let me show you a few features I've made in this project! =)
+Olá, meu nome é Arthur e este é o meu código em JS. Neste código vamos inserir algumas funcionalidades extras ao site.
 */
 
 
 
 
-//First of all, let's design an animation for our modal:
+//Primeiramente, vamos validar os inputs para garantir a segurança e usabilidade pelo usuário.
 
-//Let's get the id of the elements we want to animate.
-var modal = document.getElementById("meuModal");
-var btn = document.getElementById("abreModal");
-
-
-
+//A variável trueInput é um array que possui dois estados: 0 ou 1. 1 é quando o input está corretamente preenchido e 0 quando o input não está corretamente preenchido.
 var trueInput = [0, 0, 0, 0];
+//A variável botao deixa o botão de gerar certificado inativo, impossibilitando o usuário de prosseguir.
 var botao = document.getElementById("buttonDisappear");
 botao.disabled = true;
 
-var nomCertErrorDis = 0;
+
+
+/*Agora, vamos trabalhar com cada input diretamente. Nestes primeiros blocos de código, eu estou fazendo o seguinte:
+1 - Armazena o input numa variável;
+2 - Cria uma função que será chamada todas as vezes que o usuário estiver utilizando o campo de input;
+3 - A cada alteração que o usuário fizer no campo de input, essa alteração será comparada com uma Expressão Regular;
+4 - Se a Expressão Regular não estiver de acordo com o que foi digitado pelo usuário no input, o array trueInput na posição do input em questão receberá o valor 0 e emitirá uma mensagem ao usuário afirmando que o valor digitado é inválido;
+5 - Se a Expressão Regular estiver de acordo com o que foi digitado pelo usuário no input, o array trueInput na posição do input em questão receberá o valor 1 e a mensagem de erro será omitida.
+*/
+
+
+//var nomCertErrorDis = 0;
+//Validando o campo de nome do certificando
 var nomeCertificando = document.getElementById("nomCert");
 nomeCertificando.oninput = function() {autenticidadeNome()};
 function autenticidadeNome() {
@@ -41,7 +49,7 @@ function autenticidadeNome() {
 
 
 
-
+//Validando o campo de tamanho da fonte
 var fontSize = document.getElementById("fontSz");
 fontSize.oninput = function() {autenticidadeFonte()};
 function autenticidadeFonte() {
@@ -64,6 +72,8 @@ function autenticidadeFonte() {
     }
 }
 
+
+//Validando o campo do eixo X
 var xSide = document.getElementById("x");
 xSide.oninput = function() {autenticidadeEixoX()};
 function autenticidadeEixoX() {
@@ -86,6 +96,9 @@ function autenticidadeEixoX() {
     }
 }
 
+
+
+//Validando o campo do eixo Y
 var ySide = document.getElementById("y");
 ySide.oninput = function() {autenticidadeEixoY()};
 function autenticidadeEixoY() {
@@ -107,6 +120,18 @@ function autenticidadeEixoY() {
     }
 }
 
+
+//Agora vamos trabalhar com os resultados obtidos pelo array trueInput:
+//Cada um desses casos trabalha com resultados diferentes para o botão de gerar certificado.
+
+
+
+
+/*
+Neste primeiro caso, eu trato o que o botão deve fazer nas seguintes situações:
+1 - Se os inputs de nome do certificando e de tamanho da fonte estiverem devidamente preenchidos e os outros inputs não, o botão de gerar certificado estará disponível e atribuirá um valor vazio para os eixos X e Y;
+2 - Se todos os inputs estiverem devidamente preenchidos, o botão de gerar certificado estará disponível.
+*/
 document.getElementById("myForm").addEventListener("keyup", function() {
     if (trueInput[0] == 1 && trueInput[1] == 1 && trueInput[2] == 0 && trueInput[3] == 0)
     {
@@ -125,6 +150,16 @@ document.getElementById("myForm").addEventListener("keyup", function() {
     }
 });
 
+
+/*
+Neste segundo caso, eu ofereço ajuda ao usuário para poder preencher corretamente os botões e, assim, liberar o botão de gerar certificado. O tratamento ocorre das seguinte maneira:
+1 - Se os inputs de nome do certificando e tamanho da fonte estiverem incorretos, os textos de ajuda dos dois campos serão apresentados e o input de nome do certificano será focado, para auxiliar o usuário a visualizar seus erros;
+2 - Se apenas o campo de nome do certificando estiver vazio, esse input será focado e abaixo será apresentada uma mensagem de erro;
+3 - Se apenas o campo de tamanho da fonte estiver vazio, esse input será focado e abaixo será apresentada uma mensagem de erro;
+4 - Se o input do campo do eixo X estiver incorreto, esse campo terá foco;
+5 - Se o input do campo do eixo Y estiver incorreto, esse campo terá foco;
+
+*/
 document.getElementById("btnDisabled").addEventListener("click", function() {
     if (botao.disabled == true)
     {
@@ -162,14 +197,22 @@ document.getElementById("btnDisabled").addEventListener("click", function() {
     }
 });
 
-//Now let's show the modal with an animation when the menu icon is clicked:
+
+
+
+//Agora, vamos começar a declarar as variáveis que vão atuar no modal.
+var modal = document.getElementById("meuModal");
+var btn = document.getElementById("abreModal");
+
+
+//É hora de apresentar o modal, quando o usuário clicar no ícone. Por meio de uma simples função podemos fazer isso:
 btn.onclick = function() {
     modal.style.webkitAnimationName = 'slide';
     modal.style.webkitAnimationDuration = '.5s';
     modal.style.display = "block";
   }
 
-//Let's create an animation when the user closes the modal by clicking outside the window:
+//Vamos agora fechar o modal quando o usuário clicar em alguma área fora do modal. Por meio de outra função simples:
 window.onclick = function (event){
   if (event.target == modal) {
     modal.style.webkitAnimationName = 'slideBack';
@@ -181,25 +224,22 @@ window.onclick = function (event){
 }
 
 
-//Now we have a few things to do when the page is finally loaded:
+//Agora é hora de trabalhar com alguns outros elementos quando o site é carregado, por meio da função window.onload:
   window.onload = function() { 
-// 1 - We're gonna set the class tag in the navigation drawer element which the user is currently on by adding the class "active" to that tag;
-    //Let's find the page which the user the user is right now and compare it to our list in the navigation bar
+//Primeiramente, vamos procurar pelo elemento na Navigation Drawer ao qual o usuário está atualmente acessando. Ao encontrarmos a classe em questão, adicionamos a classe "active" à tag âncora (<a></a>)
     var all_links = document.getElementById("navInfoMenu").getElementsByTagName("a"),
         i=0, len=all_links.length,
         full_path = location.href.split('#')[0]; 
 
-    // Loop through each link.
     for(; i<len; i++) {
         if(all_links[i].href.split("#")[0] == full_path) {
             all_links[i].className += " active";
             
         }
     }
-    //Good! Now it's time to change the icon in the class active to the color we want, by changing the "fill" attribute in each one of the path tags in our svg file!
+    //Excelente! Agora vamos alterar o svg da classe que foi definida como "active", iterando pelos elementos da tag svg e modificando o valor "fill" para a cor desejada.
     var getIcon = document.getElementsByClassName("infoItem active")[0];
     getPathIcon = getIcon.getElementsByTagName("path");
-    //vamosVer.style.fill = "#EA2027";
     for (n=0;n<getPathIcon.length;n++)
     {
     getPathIcon[n].style.fill = "#EA2027";
@@ -207,8 +247,9 @@ window.onclick = function (event){
 
 }
 
-//I'm using a library called Typed.js, for an awesome effect on the form title!
-//This is the code used to print the string "Requerimentos" with the wished effect.
+
+//Eu estou usando uma biblioteca chamada Typed.JS para dar um efeito bonito de digitação às strings dos títulos de cada página. 
+//Aqui é uma pequena configuração para apresentar a string desejada, localizada no objeto "strings". 
 var typed = new Typed('#requerimentos', {
     strings: ["Requerimentos"],
     typeSpeed: 40,
@@ -218,16 +259,15 @@ var typed = new Typed('#requerimentos', {
   });
 
 
+
+//Agora vamos trabalhar com os inputs do tipo file, que são feitos pelo bootstrap.
+//Nesta função, eu apresento o nome do arquivo que o usuário selecionou na label do input.
 $('#inputCert').on('change',function(){
-                //get the file name
                 var fileName = document.getElementById("inputCert").files[0].name;
-                //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(fileName);
             })
 			$('#inputFonte').on('change',function(){
-                //get the file name
                 var fileName = document.getElementById("inputFonte").files[0].name;
-                //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(fileName);
             })
 
