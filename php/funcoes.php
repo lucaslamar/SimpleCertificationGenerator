@@ -87,7 +87,7 @@ function verificaFonte($fonte){
 
 function geraPDF($versao){
     $output = shell_exec($versao .__DIR__ . DIRECTORY_SEPARATOR ."certificado". DIRECTORY_SEPARATOR ."certificado.jpg ". __DIR__. DIRECTORY_SEPARATOR ."certificado". DIRECTORY_SEPARATOR ."certificado.pdf");
-    unset($_SESSION['gerarIRT']);
+
 }
 
 function escreveJPEG($dados){
@@ -113,7 +113,7 @@ function escreveJPEG($dados){
     $_SESSION['imagem'] = base64_encode ($image_data);
     echo $_SESSION['imagem'];
     imagejpeg($imge,__DIR__.DIRECTORY_SEPARATOR."certificado".DIRECTORY_SEPARATOR."certificado.jpg" ,60); // "../certificado".DIRECTORY_SEPARATOR."certificado.jpg",60
-    
+    $_SESSION["gerarIRT"] = true;
 }
 
     function apagaArquivos(){
@@ -123,8 +123,28 @@ function escreveJPEG($dados){
         array_map('unlink', glob(__DIR__ . DIRECTORY_SEPARATOR.$diretorioFonte .'*' .'*'));
     }
 
-    function gerarIRT(){
-        
+    function gerarIRT($data){
+    $output = shell_exec($data[2] .' -sDEVICE=jpeg -r300 -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile='.__DIR__.DIRECTORY_SEPARATOR.'certificado'.DIRECTORY_SEPARATOR.'certificado.jpg ' .__DIR__.DIRECTORY_SEPARATOR.'certificado'.DIRECTORY_SEPARATOR.$data[3]);
+    $imge = imagecreatefromjpeg(__DIR__.DIRECTORY_SEPARATOR."certificado".DIRECTORY_SEPARATOR."certificado.jpg"); //../certificado/certificado.jpg
+    $titleColor = imagecolorallocate($imge, 0, 0, 0);
+    $gray = imagecolorallocate($imge, 120, 120, 120);
+
+    
+    //Quando for usar uma fonte própria segue a função e parametros necessário - Neste exemplo válido para fontes truetype (ttf)
+    //imagettftext(image, size, angle, x, y, color, fontfile, text)
+    //imagettftext($imge, 32, 0, 100, 150, $titleColor, $fonteBevan, $nomeCertificado);
+    imagettftext($imge, 80, 0, $data[0], $data[1], $titleColor, $data[5], $data[4]);
+    // imprime data atual se preciso        
+    //imagestring($imge, 10, 0, 400, 380, $gray, $fontePlayBall, utf8_decode("Concluído em: ").date("d/m/Y"),$titleColor);
+    //imagestring($imge, 3, 440, 410, utf8_decode("Concluido em : ") . date("d/m/Y"), $titleColor);
+    
+    ob_start (); 
+    imagejpeg($imge);
+    $image_data = ob_get_contents (); 
+    ob_end_clean (); 
+    $_SESSION['imagem'] = base64_encode ($image_data);
+    echo $_SESSION['imagem'];
+    imagejpeg($imge,__DIR__.DIRECTORY_SEPARATOR."certificado".DIRECTORY_SEPARATOR."certificado.jpg" ,60);
 }
 }
 ?>

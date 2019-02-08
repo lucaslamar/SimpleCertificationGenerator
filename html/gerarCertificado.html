@@ -399,9 +399,29 @@
             <span class="typed" id="visualizacao"></span>
             <hr>
             <label for="formControlRange">Eixo X</label>
-    <input type="range" class="form-control-range" name="eixoXAtual" id="formControlRange">
+    <input type="range" class="form-control-range"  id="eixoX" max="3000" name="eixoXAtual" id="formControlRange">
             <label for="formControlRange">Eixo Y</label>
-    <input type="range" class="form-control-range" name="eixoYAtual" id="formControlRange">            
+
+
+
+            <div id="diveixoX" style="display: none">50</div>
+            <div id="diveixoY" style="display: none">50</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <input type="range" class="form-control-range" id="eixoY" max="3000"  name="eixoYAtual" id="formControlRange">            
     <label for="formControlRange">Fonte</label>
     <input type="range" class="form-control-range" name="fonteAtual" id="formControlRange">
 		<div id="certificado"></div>
@@ -505,5 +525,61 @@
 
 
 </script>
+<script>
+   $(document).ready(function(){
+   
+   rng = document.querySelector("#eixoX");
+   rng2 = document.querySelector("#eixoY");
+   
+   var listener = function() {
+     window.requestAnimationFrame(function() {
+       document.querySelector("#diveixoX").innerHTML = rng.value;
+       document.querySelector("#diveixoY").innerHTML = rng2.value;
+     });
+   };
+   
+   rng.addEventListener("mousedown", function() {
+     listener();
+     rng.addEventListener("mousemove", listener);
+   });
+   rng2.addEventListener("mousedown", function() {
+     listener();
+     rng2.addEventListener("mousemove", listener);
+   });
+   rng.addEventListener("mouseup", function() {
+     rng.removeEventListener("mousemove", listener);
+       $.ajax({
+         type: 'POST',
+         url: '../php/imprimirCertificado.php',
+         data: {eixoX:document.querySelector("#diveixoX").innerHTML, eixoY:document.querySelector("#diveixoY").innerHTML},
+         cache: false,
+         success: function(data){
+           $('#certificado').html('<img height="225px" width="100%" src="data:image/jpeg;base64,' + data + '" />');
+         }
+       })
+       return false;
+   });
+   rng2.addEventListener("mouseup", function() {
+     rng.removeEventListener("mousemove", listener);
+       $.ajax({
+         type: 'POST',
+         url: '../php/imprimirCertificado.php',
+         data: {eixoX:document.querySelector("#diveixoX").innerHTML, eixoY:document.querySelector("#diveixoY").innerHTML},
+         cache: false,
+         success: function(data){
+           $('#certificado').html('<img height="225px" width="100%" src="data:image/jpeg;base64,' + data + '" />');
+         }
+       })
+       return false;
+   });
+   
+   
+   // include the following line to maintain accessibility
+   // by allowing the listener to also be fired for
+   // appropriate keyboard events
+   rng.addEventListener("keydown", listener);
+   
+   });
+   </script>
 </body>
 </html>
