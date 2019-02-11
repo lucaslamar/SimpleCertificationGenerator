@@ -270,5 +270,3 @@ $('#inputCert').on('change',function(){
                 var fileName = document.getElementById("inputFonte").files[0].name;
                 $(this).next('.custom-file-label').html(fileName);
             })
-
-

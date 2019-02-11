@@ -38,13 +38,13 @@ class funcoes{
     $win32 = shell_exec( 'gswin32c -version');
     $unix = shell_exec( 'gs -version');
     if ($win64 != NULL){
-        return 'gswin64c';
+        return 'gswin64c ';
     }
     else if ($win32 != NULL){
-        return 'gswin32c';
+        return 'gswin32c ';
     }
     else if ($unix != NULL){
-        return 'gs';
+        return 'gs ';
     }
     else{
         header('HTTP/1.1 415 Por favor, instale o Ghostscript para continuar! / Please Install Ghostscript to continue!');
@@ -116,13 +116,6 @@ function escreveJPEG($dados){
     $_SESSION["gerarIRT"] = true;
 }
 
-    function apagaArquivos(){
-        $diretorioCertificado = __DIR__.DIRECTORY_SEPARATOR."php".DIRECTORY_SEPARATOR."certificado". DIRECTORY_SEPARATOR;
-        $diretorioFonte = __DIR__.DIRECTORY_SEPARATOR."php".DIRECTORY_SEPARATOR."fontes". DIRECTORY_SEPARATOR;
-        array_map('unlink', glob(__DIR__ . DIRECTORY_SEPARATOR.$diretorioCertificado .'*' .'*'));
-        array_map('unlink', glob(__DIR__ . DIRECTORY_SEPARATOR.$diretorioFonte .'*' .'*'));
-    }
-
     function gerarIRT($data){
     $output = shell_exec($data[2] .' -sDEVICE=jpeg -r300 -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile='.__DIR__.DIRECTORY_SEPARATOR.'certificado'.DIRECTORY_SEPARATOR.'certificado.jpg ' .__DIR__.DIRECTORY_SEPARATOR.'certificado'.DIRECTORY_SEPARATOR.$data[3]);
     $imge = imagecreatefromjpeg(__DIR__.DIRECTORY_SEPARATOR."certificado".DIRECTORY_SEPARATOR."certificado.jpg"); //../certificado/certificado.jpg
@@ -133,7 +126,7 @@ function escreveJPEG($dados){
     //Quando for usar uma fonte própria segue a função e parametros necessário - Neste exemplo válido para fontes truetype (ttf)
     //imagettftext(image, size, angle, x, y, color, fontfile, text)
     //imagettftext($imge, 32, 0, 100, 150, $titleColor, $fonteBevan, $nomeCertificado);
-    imagettftext($imge, 80, 0, $data[0], $data[1], $titleColor, $data[5], $data[4]);
+    imagettftext($imge,$data[6], 0, $data[0], $data[1], $titleColor, $data[5], $data[4]);
     // imprime data atual se preciso        
     //imagestring($imge, 10, 0, 400, 380, $gray, $fontePlayBall, utf8_decode("Concluído em: ").date("d/m/Y"),$titleColor);
     //imagestring($imge, 3, 440, 410, utf8_decode("Concluido em : ") . date("d/m/Y"), $titleColor);
@@ -145,6 +138,7 @@ function escreveJPEG($dados){
     $_SESSION['imagem'] = base64_encode ($image_data);
     echo $_SESSION['imagem'];
     imagejpeg($imge,__DIR__.DIRECTORY_SEPARATOR."certificado".DIRECTORY_SEPARATOR."certificado.jpg" ,60);
+    $output = shell_exec($data[7] .__DIR__ . DIRECTORY_SEPARATOR ."certificado". DIRECTORY_SEPARATOR ."certificado.jpg ". __DIR__. DIRECTORY_SEPARATOR ."certificado". DIRECTORY_SEPARATOR ."certificado.pdf");
 }
 }
 ?>

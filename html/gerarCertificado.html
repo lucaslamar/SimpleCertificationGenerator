@@ -1,585 +1,619 @@
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Gerador de Certificado</title>
-		<link rel="shortcut icon" href="../favicon/favicon.png">
-     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=PT+Mono|Roboto" rel="stylesheet"> 
-		<link rel="stylesheet" type="text/css" href="../css/gerarCertificado.css">
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-	</head>
-	<body>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gerador de Certificado</title>
+	<link rel="shortcut icon" href="../favicon/favicon.png">
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Mono|Roboto" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="../css/gerarCertificado.css">
+	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.js"
+	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	crossorigin="anonymous"></script>
+</head>
+<body>
 	<div id="meuModal" class="modal">
 		<div class="modal-content">
 			<div class="infoPresentation"><p id="info">Gerador de Certificados</p></div>
-      <ul class="infoMenu" id="navInfoMenu">
+			<ul class="infoMenu" id="navInfoMenu">
 				<li id="itemFont"><a class="infoItem" href="gerarCertificado.html">
-          <svg
-          class="iconsNavigation"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="34px"
-   height="34px"
-   viewBox="0 0 62.856239 62.76252"
-   version="1.1"
-   id="svg8"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="certGenIcon.svg">
-  <defs
-     id="defs2" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="136.93548"
-     inkscape:cy="108.88899"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     showborder="false"
-     inkscape:window-width="1846"
-     inkscape:window-height="1058"
-     inkscape:window-x="66"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata5">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-59.344701,19.815696)">
-    <g
-       id="g916">
-      <g
-         transform="translate(-13.04092)"
-         id="g907">
-        <path
-           style="opacity:1;fill:#808080;fill-opacity:1;stroke:none;stroke-width:1.96630943;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.95675677;paint-order:markers stroke fill"
-           d="M 104.04472,-14.182658 A 25.685878,25.84524 0 0 0 78.358381,11.662518 25.685878,25.84524 0 0 0 104.04472,37.508216 25.685878,25.84524 0 0 0 129.73053,11.662518 25.685878,25.84524 0 0 0 104.04472,-14.182658 Z m 0,6.4615558 A 19.26441,19.38393 0 0 1 123.30882,11.662518 19.26441,19.38393 0 0 1 104.04472,31.046661 19.26441,19.38393 0 0 1 84.780095,11.662518 19.26441,19.38393 0 0 1 104.04472,-7.7211022 Z"
-           id="path12"
-           inkscape:connector-curvature="0" />
-        <path
-           style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26748589px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           d="m 124.55202,21.481671 -7.9998,10.732576 10.6664,10.732576 -1.3333,-10.732576 h 9.3331 z m 1.30986,2.499727 6.84879,6.891277 h -8.15865 l 1.16559,9.414063 -7.71751,-7.764874 z"
-           id="path832"
-           inkscape:connector-curvature="0" />
-        <path
-           id="path830"
-           d="m 124.57546,1.6494601 -7.9998,-10.7325729 10.6664,-10.7325832 -1.3333,10.7325832 h 9.3331 z m 1.30986,-2.49973022 6.84879,-6.89127738 h -8.15865 l 1.1656,-9.4140585 -7.71752,7.7648756 z"
-           style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26748592px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           inkscape:connector-curvature="0" />
-        <path
-           id="path833"
-           d="m 83.052018,21.481669 7.9998,10.732583 -10.666397,10.732573 1.333293,-10.732573 h -9.333093 z m -1.309861,2.49973 -6.848786,6.891278 h 8.158647 l -1.165597,9.414058 7.717511,-7.764865 z"
-           style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26748592px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           inkscape:connector-curvature="0" />
-        <path
-           inkscape:connector-curvature="0"
-           style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26748592px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-           d="M 83.052018,1.6657162 91.051818,-9.0668669 80.385421,-19.79944 81.718714,-9.0668669 H 72.385621 Z M 81.742157,-0.83401407 74.893371,-7.7252915 h 8.158647 l -1.165597,-9.4140585 7.717511,7.7648655 z"
-           id="path835" />
-      </g>
-      <path
-         inkscape:connector-curvature="0"
-         id="path900"
-         d="m 89.713152,17.874458 c -1.6958,-0.251873 -3.591674,-1.577769 -4.473813,-3.128812 -0.627538,-1.103384 -0.841411,-2.06765 -0.782717,-3.528965 0.04611,-1.148064 0.104501,-1.3974437 0.543747,-2.3223687 1.350495,-2.843758 4.382683,-4.280795 7.383413,-3.499202 2.8634,0.745819 4.95602,3.707138 4.69209,6.6398987 -0.33808,3.756839 -3.65779,6.389732 -7.36272,5.839449 z"
-         style="opacity:1;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.13363476;stroke-opacity:1" />
-    </g>
-  </g>
+					<svg
+					class="iconsNavigation"
+					xmlns:dc="http://purl.org/dc/elements/1.1/"
+					xmlns:cc="http://creativecommons.org/ns#"
+					xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+					xmlns:svg="http://www.w3.org/2000/svg"
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+					xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+					width="34px"
+					height="34px"
+					viewBox="0 0 62.856239 62.76252"
+					version="1.1"
+					id="svg8"
+					inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+					sodipodi:docname="certGenIcon.svg">
+					<defs
+					id="defs2" />
+					<sodipodi:namedview
+					id="base"
+					pagecolor="#ffffff"
+					bordercolor="#666666"
+					borderopacity="1.0"
+					inkscape:pageopacity="0.0"
+					inkscape:pageshadow="2"
+					inkscape:zoom="1.979899"
+					inkscape:cx="136.93548"
+					inkscape:cy="108.88899"
+					inkscape:document-units="mm"
+					inkscape:current-layer="layer1"
+					showgrid="false"
+					showborder="false"
+					inkscape:window-width="1846"
+					inkscape:window-height="1058"
+					inkscape:window-x="66"
+					inkscape:window-y="-8"
+					inkscape:window-maximized="1" />
+					<metadata
+					id="metadata5">
+					<rdf:RDF>
+					<cc:Work
+					rdf:about="">
+					<dc:format>image/svg+xml</dc:format>
+					<dc:type
+					rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+					<dc:title />
+				</cc:Work>
+			</rdf:RDF>
+		</metadata>
+		<g
+		inkscape:label="Layer 1"
+		inkscape:groupmode="layer"
+		id="layer1"
+		transform="translate(-59.344701,19.815696)">
+		<g
+		id="g916">
+		<g
+		transform="translate(-13.04092)"
+		id="g907">
+		<path
+		style="opacity:1;fill:#808080;fill-opacity:1;stroke:none;stroke-width:1.96630943;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.95675677;paint-order:markers stroke fill"
+		d="M 104.04472,-14.182658 A 25.685878,25.84524 0 0 0 78.358381,11.662518 25.685878,25.84524 0 0 0 104.04472,37.508216 25.685878,25.84524 0 0 0 129.73053,11.662518 25.685878,25.84524 0 0 0 104.04472,-14.182658 Z m 0,6.4615558 A 19.26441,19.38393 0 0 1 123.30882,11.662518 19.26441,19.38393 0 0 1 104.04472,31.046661 19.26441,19.38393 0 0 1 84.780095,11.662518 19.26441,19.38393 0 0 1 104.04472,-7.7211022 Z"
+		id="path12"
+		inkscape:connector-curvature="0" />
+		<path
+		style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26748589px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+		d="m 124.55202,21.481671 -7.9998,10.732576 10.6664,10.732576 -1.3333,-10.732576 h 9.3331 z m 1.30986,2.499727 6.84879,6.891277 h -8.15865 l 1.16559,9.414063 -7.71751,-7.764874 z"
+		id="path832"
+		inkscape:connector-curvature="0" />
+		<path
+		id="path830"
+		d="m 124.57546,1.6494601 -7.9998,-10.7325729 10.6664,-10.7325832 -1.3333,10.7325832 h 9.3331 z m 1.30986,-2.49973022 6.84879,-6.89127738 h -8.15865 l 1.1656,-9.4140585 -7.71752,7.7648756 z"
+		style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26748592px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+		inkscape:connector-curvature="0" />
+		<path
+		id="path833"
+		d="m 83.052018,21.481669 7.9998,10.732583 -10.666397,10.732573 1.333293,-10.732573 h -9.333093 z m -1.309861,2.49973 -6.848786,6.891278 h 8.158647 l -1.165597,9.414058 7.717511,-7.764865 z"
+		style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26748592px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+		inkscape:connector-curvature="0" />
+		<path
+		inkscape:connector-curvature="0"
+		style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26748592px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+		d="M 83.052018,1.6657162 91.051818,-9.0668669 80.385421,-19.79944 81.718714,-9.0668669 H 72.385621 Z M 81.742157,-0.83401407 74.893371,-7.7252915 h 8.158647 l -1.165597,-9.4140585 7.717511,7.7648655 z"
+		id="path835" />
+	</g>
+	<path
+	inkscape:connector-curvature="0"
+	id="path900"
+	d="m 89.713152,17.874458 c -1.6958,-0.251873 -3.591674,-1.577769 -4.473813,-3.128812 -0.627538,-1.103384 -0.841411,-2.06765 -0.782717,-3.528965 0.04611,-1.148064 0.104501,-1.3974437 0.543747,-2.3223687 1.350495,-2.843758 4.382683,-4.280795 7.383413,-3.499202 2.8634,0.745819 4.95602,3.707138 4.69209,6.6398987 -0.33808,3.756839 -3.65779,6.389732 -7.36272,5.839449 z"
+	style="opacity:1;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.13363476;stroke-opacity:1" />
+</g>
+</g>
 </svg>
-        Gerar certificado</li></a>
-				<li><a class="infoItem" href="aboutUs.html">
-          <svg
-  class="iconsNavigation"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="34px"
-   height="34px"
-   viewBox="0 0 63.495995 63.504032"
-   version="1.1"
-   id="svg8"
-   inkscape:version="0.92.4 (unknown)"
-   sodipodi:docname="aboutUsIcon.svg">
-  <defs
-     id="defs2" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="59.604668"
-     inkscape:cy="82.79515"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     borderlayer="false"
-     showborder="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="947"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata5">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-665.93024,102.45014)">
-    <g
-       transform="matrix(0.99785483,0,0,1.0097855,545.16569,-123.50617)"
-       id="g1855">
-      <path
-         inkscape:connector-curvature="0"
-         id="path1728"
-         d="M 175.47387,33.907029 A 12.645527,12.645527 0 0 0 162.82834,21.261502 12.645527,12.645527 0 0 0 150.18281,33.907029 12.645527,12.645527 0 0 0 162.82834,46.552556 12.645527,12.645527 0 0 0 175.47387,33.907029 Z"
-         style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.81903893;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" />
-      <path
-         inkscape:connector-curvature="0"
-         id="ellipse889"
-         d="m 163.75434,47.769695 a 20.492565,10.570689 0 0 0 -6.99492,0.649054 13.91008,13.91008 0 0 1 -9.21081,12.983186 22.541821,11.627758 0 0 1 16.5406,7.500835 20.492565,10.570689 0 0 0 20.15794,-10.562146 20.492565,10.570689 0 0 0 -20.49281,-10.570929 z"
-         style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.81903887;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" />
-      <path
-         style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.81903893;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-         d="M 154.57179,48.326821 A 12.645527,12.645527 0 0 0 141.92626,35.681294 12.645527,12.645527 0 0 0 129.28073,48.326821 12.645527,12.645527 0 0 0 141.92626,60.972348 12.645527,12.645527 0 0 0 154.57179,48.326821 Z"
-         id="path1735"
-         inkscape:connector-curvature="0" />
-      <path
-         style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.81903893;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-         d="M 162.41882,72.760411 A 20.492565,10.570689 0 0 0 141.92626,62.189722 20.492565,10.570689 0 0 0 121.43369,72.760411 20.492565,10.570689 0 0 0 141.92626,83.3311 20.492565,10.570689 0 0 0 162.41882,72.760411 Z"
-         id="path1737"
-         inkscape:connector-curvature="0" />
-    </g>
-  </g>
-</svg>
-
-        Quem somos</li></a>
-				<li><a class="infoItem" href="faq.html">
-          <svg
-   class="iconsNavigation"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="34px"
-   height="34px"
-   viewBox="0 0 63.572838 63.499989"
-   version="1.1"
-   id="svg8"
-   inkscape:version="0.92.4 (unknown)"
-   sodipodi:docname="faqIcon.svg">
-  <defs
-     id="defs2" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="-80.991488"
-     inkscape:cy="290.54653"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     showborder="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="947"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata5">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-166.96074,-75.497869)">
-    <g
-       id="g836">
-      <g
-         id="g830">
-        <g
-           id="g825"
-           transform="matrix(1.496895,0,0,0.99869092,-83.016602,0.13231905)">
-          <path
-             inkscape:connector-curvature="0"
-             id="path1885"
-             d="m 167.13039,91.554855 c 0,0 1.32292,-14.552084 19.84375,-15.875001 18.52083,-1.322916 22.48958,13.493751 22.35729,15.875001 -0.13229,2.38125 -1.45521,10.252605 -7.80521,14.485935 -6.35,4.23334 -9.45885,7.34219 -9.3927,10.98021 0.0661,3.63802 -15.47813,5.35781 -10.18646,-7.27604 0,0 3.83646,-6.35 9.19427,-9.26042 5.35781,-2.910413 6.94531,-10.58333 2.38125,-13.692184 -4.56406,-3.108854 -11.24479,-0.79375 -12.36927,1.25677 -1.12448,2.05052 -4.10104,9.921876 -8.86354,8.665105 -4.7625,-1.256771 -4.8948,-3.307293 -5.15938,-5.159376 z"
-             style="fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-          <circle
-             r="6.6572585"
-             cy="132.1684"
-             cx="186.7757"
-             id="path1887"
-             style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.44381717;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.96174867;paint-order:markers stroke fill" />
-        </g>
-      </g>
-    </g>
-  </g>
+Gerar certificado</li></a>
+<li><a class="infoItem" href="aboutUs.html">
+	<svg
+	class="iconsNavigation"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:cc="http://creativecommons.org/ns#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	width="34px"
+	height="34px"
+	viewBox="0 0 63.495995 63.504032"
+	version="1.1"
+	id="svg8"
+	inkscape:version="0.92.4 (unknown)"
+	sodipodi:docname="aboutUsIcon.svg">
+	<defs
+	id="defs2" />
+	<sodipodi:namedview
+	id="base"
+	pagecolor="#ffffff"
+	bordercolor="#666666"
+	borderopacity="1.0"
+	inkscape:pageopacity="0.0"
+	inkscape:pageshadow="2"
+	inkscape:zoom="1.4"
+	inkscape:cx="59.604668"
+	inkscape:cy="82.79515"
+	inkscape:document-units="mm"
+	inkscape:current-layer="layer1"
+	showgrid="false"
+	borderlayer="false"
+	showborder="false"
+	inkscape:window-width="1920"
+	inkscape:window-height="947"
+	inkscape:window-x="0"
+	inkscape:window-y="27"
+	inkscape:window-maximized="1" />
+	<metadata
+	id="metadata5">
+	<rdf:RDF>
+	<cc:Work
+	rdf:about="">
+	<dc:format>image/svg+xml</dc:format>
+	<dc:type
+	rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+	<dc:title></dc:title>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g
+inkscape:label="Layer 1"
+inkscape:groupmode="layer"
+id="layer1"
+transform="translate(-665.93024,102.45014)">
+<g
+transform="matrix(0.99785483,0,0,1.0097855,545.16569,-123.50617)"
+id="g1855">
+<path
+inkscape:connector-curvature="0"
+id="path1728"
+d="M 175.47387,33.907029 A 12.645527,12.645527 0 0 0 162.82834,21.261502 12.645527,12.645527 0 0 0 150.18281,33.907029 12.645527,12.645527 0 0 0 162.82834,46.552556 12.645527,12.645527 0 0 0 175.47387,33.907029 Z"
+style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.81903893;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" />
+<path
+inkscape:connector-curvature="0"
+id="ellipse889"
+d="m 163.75434,47.769695 a 20.492565,10.570689 0 0 0 -6.99492,0.649054 13.91008,13.91008 0 0 1 -9.21081,12.983186 22.541821,11.627758 0 0 1 16.5406,7.500835 20.492565,10.570689 0 0 0 20.15794,-10.562146 20.492565,10.570689 0 0 0 -20.49281,-10.570929 z"
+style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.81903887;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" />
+<path
+style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.81903893;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+d="M 154.57179,48.326821 A 12.645527,12.645527 0 0 0 141.92626,35.681294 12.645527,12.645527 0 0 0 129.28073,48.326821 12.645527,12.645527 0 0 0 141.92626,60.972348 12.645527,12.645527 0 0 0 154.57179,48.326821 Z"
+id="path1735"
+inkscape:connector-curvature="0" />
+<path
+style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.81903893;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+d="M 162.41882,72.760411 A 20.492565,10.570689 0 0 0 141.92626,62.189722 20.492565,10.570689 0 0 0 121.43369,72.760411 20.492565,10.570689 0 0 0 141.92626,83.3311 20.492565,10.570689 0 0 0 162.41882,72.760411 Z"
+id="path1737"
+inkscape:connector-curvature="0" />
+</g>
+</g>
 </svg>
 
-        FAQ</li></a>
-				<li><a class="infoItem" href="contribute.html">
-        <svg
-   class="iconsNavigation"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="34px"
-   height="34px"
-   viewBox="0 0 63.5 63.500004"
-   version="1.1"
-   id="svg8"
-   inkscape:version="0.92.4 (unknown)"
-   sodipodi:docname="donateIcon.svg">
-  <defs
-     id="defs2" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="-3.8618923"
-     inkscape:cy="116.48814"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     showborder="false"
-     inkscape:snap-global="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="947"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata5">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-90.432456,-136.78273)">
-    <g
-       id="g892">
-      <g
-         id="g883">
-        <g
-           id="g875">
-          <rect
-             ry="0"
-             y="172.14854"
-             x="90.673851"
-             height="26.528337"
-             width="11.072928"
-             id="rect1907"
-             style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.48278964;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" />
-          <path
-             inkscape:connector-curvature="0"
-             id="path1937"
-             d="m 109.79028,147.42415 v 27.37725 h 31.25815 v -37.13969 h -23.09654 z"
-             style="fill:none;stroke:#808080;stroke-width:1.7579509;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-          <path
-             inkscape:connector-curvature="0"
-             id="path1939"
-             d="m 109.98935,147.21192 h 7.96254 v -9.55021"
-             style="fill:none;stroke:#808080;stroke-width:1.7579509;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-          <g
-             id="g17"
-             transform="matrix(7.2020677,-1.9631099,1.9167354,7.3763185,-9.7332806,-284.6159)">
-            <path
-               sodipodi:nodetypes="ccccccccccc"
-               style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.13450332;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-               d="M -0.55758639,65.36645 1.4709365,66.128686 5.5316312,64.602843 5.2037911,63.806535 1.8267249,64.32816 0.4175155,63.798637 1.9396667,64.028991 1.8411219,63.513237 -0.77189861,62.531372 -1.4705843,65.036986 Z"
-               id="path1896"
-               inkscape:connector-curvature="0" />
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
+Quem somos</li></a>
+<li><a class="infoItem" href="faq.html">
+	<svg
+	class="iconsNavigation"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:cc="http://creativecommons.org/ns#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	width="34px"
+	height="34px"
+	viewBox="0 0 63.572838 63.499989"
+	version="1.1"
+	id="svg8"
+	inkscape:version="0.92.4 (unknown)"
+	sodipodi:docname="faqIcon.svg">
+	<defs
+	id="defs2" />
+	<sodipodi:namedview
+	id="base"
+	pagecolor="#ffffff"
+	bordercolor="#666666"
+	borderopacity="1.0"
+	inkscape:pageopacity="0.0"
+	inkscape:pageshadow="2"
+	inkscape:zoom="0.49497475"
+	inkscape:cx="-80.991488"
+	inkscape:cy="290.54653"
+	inkscape:document-units="mm"
+	inkscape:current-layer="layer1"
+	showgrid="false"
+	showborder="false"
+	inkscape:window-width="1920"
+	inkscape:window-height="947"
+	inkscape:window-x="0"
+	inkscape:window-y="27"
+	inkscape:window-maximized="1" />
+	<metadata
+	id="metadata5">
+	<rdf:RDF>
+	<cc:Work
+	rdf:about="">
+	<dc:format>image/svg+xml</dc:format>
+	<dc:type
+	rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+	<dc:title></dc:title>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g
+inkscape:label="Layer 1"
+inkscape:groupmode="layer"
+id="layer1"
+transform="translate(-166.96074,-75.497869)">
+<g
+id="g836">
+<g
+id="g830">
+<g
+id="g825"
+transform="matrix(1.496895,0,0,0.99869092,-83.016602,0.13231905)">
+<path
+inkscape:connector-curvature="0"
+id="path1885"
+d="m 167.13039,91.554855 c 0,0 1.32292,-14.552084 19.84375,-15.875001 18.52083,-1.322916 22.48958,13.493751 22.35729,15.875001 -0.13229,2.38125 -1.45521,10.252605 -7.80521,14.485935 -6.35,4.23334 -9.45885,7.34219 -9.3927,10.98021 0.0661,3.63802 -15.47813,5.35781 -10.18646,-7.27604 0,0 3.83646,-6.35 9.19427,-9.26042 5.35781,-2.910413 6.94531,-10.58333 2.38125,-13.692184 -4.56406,-3.108854 -11.24479,-0.79375 -12.36927,1.25677 -1.12448,2.05052 -4.10104,9.921876 -8.86354,8.665105 -4.7625,-1.256771 -4.8948,-3.307293 -5.15938,-5.159376 z"
+style="fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+<circle
+r="6.6572585"
+cy="132.1684"
+cx="186.7757"
+id="path1887"
+style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.44381717;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.96174867;paint-order:markers stroke fill" />
+</g>
+</g>
+</g>
+</g>
 </svg>
 
-        Contribua</li></a>
-			</ul>
-		</div>
-	</div>
-		<nav>
-			<a><i class="material-icons" id="abreModal">
-				menu
-				</i></a>
-			<a><p id="logo">Gerador de certificados</p></a>
-		</nav>
+FAQ</li></a>
+<li><a class="infoItem" href="contribute.html">
+	<svg
+	class="iconsNavigation"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:cc="http://creativecommons.org/ns#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	width="34px"
+	height="34px"
+	viewBox="0 0 63.5 63.500004"
+	version="1.1"
+	id="svg8"
+	inkscape:version="0.92.4 (unknown)"
+	sodipodi:docname="donateIcon.svg">
+	<defs
+	id="defs2" />
+	<sodipodi:namedview
+	id="base"
+	pagecolor="#ffffff"
+	bordercolor="#666666"
+	borderopacity="1.0"
+	inkscape:pageopacity="0.0"
+	inkscape:pageshadow="2"
+	inkscape:zoom="0.98994949"
+	inkscape:cx="-3.8618923"
+	inkscape:cy="116.48814"
+	inkscape:document-units="mm"
+	inkscape:current-layer="layer1"
+	showgrid="false"
+	showborder="false"
+	inkscape:snap-global="false"
+	inkscape:window-width="1920"
+	inkscape:window-height="947"
+	inkscape:window-x="0"
+	inkscape:window-y="27"
+	inkscape:window-maximized="1" />
+	<metadata
+	id="metadata5">
+	<rdf:RDF>
+	<cc:Work
+	rdf:about="">
+	<dc:format>image/svg+xml</dc:format>
+	<dc:type
+	rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+	<dc:title></dc:title>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g
+inkscape:label="Layer 1"
+inkscape:groupmode="layer"
+id="layer1"
+transform="translate(-90.432456,-136.78273)">
+<g
+id="g892">
+<g
+id="g883">
+<g
+id="g875">
+<rect
+ry="0"
+y="172.14854"
+x="90.673851"
+height="26.528337"
+width="11.072928"
+id="rect1907"
+style="opacity:1;fill:#808080;fill-opacity:1;stroke:#808080;stroke-width:0.48278964;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" />
+<path
+inkscape:connector-curvature="0"
+id="path1937"
+d="m 109.79028,147.42415 v 27.37725 h 31.25815 v -37.13969 h -23.09654 z"
+style="fill:none;stroke:#808080;stroke-width:1.7579509;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+<path
+inkscape:connector-curvature="0"
+id="path1939"
+d="m 109.98935,147.21192 h 7.96254 v -9.55021"
+style="fill:none;stroke:#808080;stroke-width:1.7579509;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+<g
+id="g17"
+transform="matrix(7.2020677,-1.9631099,1.9167354,7.3763185,-9.7332806,-284.6159)">
+<path
+sodipodi:nodetypes="ccccccccccc"
+style="fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.13450332;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+d="M -0.55758639,65.36645 1.4709365,66.128686 5.5316312,64.602843 5.2037911,63.806535 1.8267249,64.32816 0.4175155,63.798637 1.9396667,64.028991 1.8411219,63.513237 -0.77189861,62.531372 -1.4705843,65.036986 Z"
+id="path1896"
+inkscape:connector-curvature="0" />
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
 
-    <div class="centerCard">
-      <div class="myCard">
-          <div class="visualizaCertificado">
-            <span class="typed" id="visualizacao"></span>
-            <hr>
-            <label for="formControlRange">Eixo X</label>
-    <input type="range" class="form-control-range"  id="eixoX" max="3000" name="eixoXAtual" id="formControlRange">
-            <label for="formControlRange">Eixo Y</label>
-
-
-
-            <div id="diveixoX" style="display: none">50</div>
-            <div id="diveixoY" style="display: none">50</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <input type="range" class="form-control-range" id="eixoY" max="3000"  name="eixoYAtual" id="formControlRange">            
-    <label for="formControlRange">Fonte</label>
-    <input type="range" class="form-control-range" name="fonteAtual" id="formControlRange">
-		<div id="certificado"></div>
-            <div class="buttonSlot">
-            <a href="../php/certificado/certificado.jpg" target="_blank"><button class="formButton">Gerar JPEG</button></a>
-            <a href="../php/certificado/certificado.pdf" target="_blank"><button class="formButton">Gerar PDF</button></a>
-            <a href="gerarCertificado.html"><button class="formButton">Retornar</button></a>
-          </div>
-
-          </div>
-        <div class="cardForm">
-          <br>
-          <span class="typed" id="requerimentos"></span>
-          <hr>
-          <form enctype="multipart/form-data" autocomplete="off" method="POST" id="myForm">
-            <div class="form-group">
-            <input class="form-control form-control-lg" name="nome-certificando" type="text" placeholder="Nome do certificando" id="nomCert">
-            <small id="nomCertError" class="form-text text-muted error-message">O nome é inválido!</small>
-            <input class="form-control form-control-lg" name="tamanho-fonte" type="number" min="1" placeholder="Tamanho da fonte" id="fontSz">
-            <small id="fontSzError" class="form-text text-muted error-message">O tamanho é inválido!</small>
-            <input class="form-control form-control-lg" name="eixo-x" type="number" min="0" placeholder="Eixo X" id="x">
-            <small id="xError" class="form-text text-muted error-message">O valor é inválido!</small>
-            <input class="form-control form-control-lg" name="eixo-y" type="number" min="0" placeholder="Eixo Y" id="y">
-            <small id="yError" class="form-text text-muted error-message">O valor é inválido!</small>
-            <div class="custom-file">
-    <input type="file" accept="application/pdf" class="form-control custom-file-input" name="certificadoAnexo" id="inputCert" lang="es">
-    <label class="custom-file-label form-control" for="validatedCustomFile">Escolha o certificado</label>
-    <div class="invalid-feedback">Certificado Inválido!</div>
-  </div>
-  <div class="spacing">
-  <div class="custom-file" id="teste">
-    <input type="file"  id="inputFonte" class="form-control custom-file-input" name="fonteAnexo" lang="es">
-    <label class="custom-file-label form-control" for="validatedCustomFile">Escolha a fonte</label>
-    <small id="optionalField" class="form-text text-muted">(opcional)</small>
-    <div class="invalid-feedback">Fonte inválida!</div>
-  </div>
+Contribua</li></a>
+</ul>
 </div>
-            <div class="buttonSlot">
-            <button type="submit" class="formButton" id="buttonDisappear">
-              <div id="btnDisabled">
-              Gerar
-              </div>
-            </button>
-            <div class="loadingFrame"></div>
+</div>
+<nav>
+	<a><i class="material-icons" id="abreModal">
+		menu
+	</i></a>
+	<a><p id="logo">Gerador de certificados</p></a>
+</nav>
+
+<div class="centerCard">
+	<div class="myCard">
+		<div class="visualizaCertificado">
+			<span class="typed" id="visualizacao"></span>
+			<hr>
+			<label for="formControlRange">Eixo X</label>
+			<input type="range" class="form-control-range"  id="eixoX" max="3000" name="eixoXAtual" id="formControlRange">
+			<label for="formControlRange">Eixo Y</label>
+
+
+
+			<div id="diveixoX" style="display: none">50</div>
+			<div id="diveixoY" style="display: none">50</div>
+			<div id="divFonte" style="display: none">50</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<input type="range" class="form-control-range" id="eixoY" max="3000"  name="eixoYAtual" id="formControlRange">            
+			<label for="formControlRange">Fonte</label>
+			<input type="range" class="form-control-range" max="1000" name="fonteAtual" id="fonteAtual">
+			<div id="certificado"></div>
+			<div class="buttonSlot">
+				<a href="../php/certificado/certificado.jpg" target="_blank"><button class="formButton">Gerar JPEG</button></a>
+				<a href="../php/certificado/certificado.pdf" target="_blank"><button class="formButton">Gerar PDF</button></a>
+				<a href="gerarCertificado.html"><button class="formButton">Retornar</button></a>
+			</div>
+
+		</div>
+		<div class="cardForm">
+			<br>
+			<span class="typed" id="requerimentos"></span>
+			<hr>
+			<form enctype="multipart/form-data" autocomplete="off" method="POST" id="myForm">
+				<div class="form-group">
+					<input class="form-control form-control-lg" name="nome-certificando" type="text" placeholder="Nome do certificando" id="nomCert">
+					<small id="nomCertError" class="form-text text-muted error-message">O nome é inválido!</small>
+					<input class="form-control form-control-lg" name="tamanho-fonte" type="number" min="1" placeholder="Tamanho da fonte" id="fontSz">
+					<small id="fontSzError" class="form-text text-muted error-message">O tamanho é inválido!</small>
+					<input class="form-control form-control-lg" name="eixo-x" type="number" min="0" placeholder="Eixo X" id="x">
+					<small id="xError" class="form-text text-muted error-message">O valor é inválido!</small>
+					<input class="form-control form-control-lg" name="eixo-y" type="number" min="0" placeholder="Eixo Y" id="y">
+					<small id="yError" class="form-text text-muted error-message">O valor é inválido!</small>
+					<div class="custom-file">
+						<input type="file" accept="application/pdf" class="form-control custom-file-input" name="certificadoAnexo" id="inputCert" lang="es">
+						<label class="custom-file-label form-control" for="validatedCustomFile">Escolha o certificado</label>
+						<div class="invalid-feedback">Certificado Inválido!</div>
+					</div>
+					<div class="spacing">
+						<div class="custom-file" id="teste">
+							<input type="file"  id="inputFonte" class="form-control custom-file-input" name="fonteAnexo" lang="es">
+							<label class="custom-file-label form-control" for="validatedCustomFile">Escolha a fonte</label>
+							<small id="optionalField" class="form-text text-muted">(opcional)</small>
+							<div class="invalid-feedback">Fonte inválida!</div>
+						</div>
+					</div>
+					<div class="buttonSlot">
+						<button type="submit" class="formButton" id="buttonDisappear">
+							<div id="btnDisabled">
+								Gerar
+							</div>
+						</button>
+						<div class="loadingFrame"></div>
             <!--<button type="submit" class="formButton">
               Visualizar
-            </button>-->
-          </div>
-        </div>
-        </div>
+          </button>-->
       </div>
-    </div>
+  </div>
+</div>
+</div>
+</div>
 
 
 <script type="text/javascript" src="../js/abreModal.js"></script>
 <script>
-   $("form#myForm").submit(function(e) {
+	$("form#myForm").submit(function(e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.
 
 
-	var formData = new FormData(this);
+    var formData = new FormData(this);
     $("#buttonDisappear").css("display", "none");
     $(".loadingFrame").css("display", "block");
     //$('#meuTeste').toast('show');
 
-  function showUp() {
-    $.ajax({
-           type: "POST",
-           url: "../php/imprimirCertificado.php",
-           data: formData,
-           success: function(data)
-           {
-		    $('#certificado').html('<img id="responsivo" height="225px" width="100%" src="data:image/jpeg;base64,' + data + '" />');
-            var typed2 = new Typed('#visualizacao', {
-    strings: ["Visualização"],
-    typeSpeed: 40,
-    backSpeed: 0,
-    fadeOut: true,
-    loop: false
-  });
-            $( ".cardForm" ).remove();
-            $('.visualizaCertificado').css("display", "block");
+    function showUp() {
+    	$.ajax({
+    		type: "POST",
+    		url: "../php/imprimirCertificado.php",
+    		data: formData,
+    		success: function(data)
+    		{
+    			$('#certificado').html('<img id="responsivo" height="225px" width="100%" src="data:image/jpeg;base64,' + data + '" />');
+    			var typed2 = new Typed('#visualizacao', {
+    				strings: ["Visualização"],
+    				typeSpeed: 40,
+    				backSpeed: 0,
+    				fadeOut: true,
+    				loop: false
+    			});
+    			$( ".cardForm" ).remove();
+    			$('.visualizaCertificado').css("display", "block");
 
                // show response from the php script.
            },
            error: function(data){
-            alert(data.statusText);
-            $("#inputCert").focus();
-            $(".loadingFrame").css("display", "none");
-            $("#buttonDisappear").css("display", "block");
+           	alert(data.statusText);
+           	$("#inputCert").focus();
+           	$(".loadingFrame").css("display", "none");
+           	$("#buttonDisappear").css("display", "block");
 
-       },
-		cache: false,
-        contentType: false,
-        processData: false
-         });
-  }
-  setTimeout(showUp, 1000);
+           },
+           cache: false,
+           contentType: false,
+           processData: false
+       });
+    }
+    setTimeout(showUp, 1000);
 
 }); 
 
 
 </script>
 <script>
-   $(document).ready(function(){
-   
-   rng = document.querySelector("#eixoX");
-   rng2 = document.querySelector("#eixoY");
-   
-   var listener = function() {
-     window.requestAnimationFrame(function() {
-       document.querySelector("#diveixoX").innerHTML = rng.value;
-       document.querySelector("#diveixoY").innerHTML = rng2.value;
-     });
-   };
-   
-   rng.addEventListener("mousedown", function() {
-     listener();
-     rng.addEventListener("mousemove", listener);
-   });
-   rng2.addEventListener("mousedown", function() {
-     listener();
-     rng2.addEventListener("mousemove", listener);
-   });
-   rng.addEventListener("mouseup", function() {
-     rng.removeEventListener("mousemove", listener);
-       $.ajax({
-         type: 'POST',
-         url: '../php/imprimirCertificado.php',
-         data: {eixoX:document.querySelector("#diveixoX").innerHTML, eixoY:document.querySelector("#diveixoY").innerHTML},
-         cache: false,
-         success: function(data){
-           $('#certificado').html('<img height="225px" width="100%" src="data:image/jpeg;base64,' + data + '" />');
-         }
-       })
-       return false;
-   });
-   rng2.addEventListener("mouseup", function() {
-     rng.removeEventListener("mousemove", listener);
-       $.ajax({
-         type: 'POST',
-         url: '../php/imprimirCertificado.php',
-         data: {eixoX:document.querySelector("#diveixoX").innerHTML, eixoY:document.querySelector("#diveixoY").innerHTML},
-         cache: false,
-         success: function(data){
-           $('#certificado').html('<img height="225px" width="100%" src="data:image/jpeg;base64,' + data + '" />');
-         }
-       })
-       return false;
-   });
-   
-   
+	$(document).ready(function(){
+		
+		rng = document.querySelector("#eixoX");
+		rng2 = document.querySelector("#eixoY");
+		rng3 = document.querySelector("#fonteAtual");
+		
+		var listener = function() {
+			window.requestAnimationFrame(function() {
+				document.querySelector("#diveixoX").innerHTML = rng.value;
+				document.querySelector("#diveixoY").innerHTML = rng2.value;
+				document.querySelector("#divFonte").innerHTML = rng3.value;
+			});
+		};
+		
+		rng.addEventListener("mousedown", function() {
+			listener();
+			rng.addEventListener("mousemove", listener);
+		});
+		rng2.addEventListener("mousedown", function() {
+      listener();
+			rng2.addEventListener("mousemove", listener);
+		});
+    rng3.addEventListener("mousedown", function() {
+              listener();
+              rng3.addEventListener("mousemove", listener);
+            });
+		rng.addEventListener("mouseup", function() {
+			rng.removeEventListener("mousemove", listener);
+			$.ajax({
+				type: 'POST',
+				url: '../php/imprimirCertificado.php',
+				data: {eixoX:document.querySelector("#diveixoX").innerHTML, eixoY:document.querySelector("#diveixoY").innerHTML, fonte:document.querySelector("#divFonte").innerHTML},
+				cache: false,
+				success: function(data){
+					$('#certificado').html('<img height="225px" width="100%" src="data:image/jpeg;base64,' + data + '" />');
+				}
+			})
+			return false;
+		});
+		rng2.addEventListener("mouseup", function() {
+			rng.removeEventListener("mousemove", listener);
+			$.ajax({
+				type: 'POST',
+				url: '../php/imprimirCertificado.php',
+				data: {eixoX:document.querySelector("#diveixoX").innerHTML, eixoY:document.querySelector("#diveixoY").innerHTML, fonte:document.querySelector("#divFonte").innerHTML},
+				cache: false,
+				success: function(data){
+					$('#certificado').html('<img height="225px" width="100%" src="data:image/jpeg;base64,' + data + '" />');
+				}
+			})
+			return false;
+		});
+		rng3.addEventListener("mouseup", function() {
+			rng3.removeEventListener("mousemove", listener);
+			$.ajax({
+				type: 'POST',
+				url: '../php/imprimirCertificado.php',
+				data: {eixoX:document.querySelector("#diveixoX").innerHTML, eixoY:document.querySelector("#diveixoY").innerHTML, fonte:document.querySelector("#divFonte").innerHTML},
+				cache: false,
+				success: function(data){
+					$('#certificado').html('<img height="225px" width="100%" src="data:image/jpeg;base64,' + data + '" />');
+				}
+			})
+			return false;
+		});
+		
    // include the following line to maintain accessibility
    // by allowing the listener to also be fired for
    // appropriate keyboard events
    rng.addEventListener("keydown", listener);
    
-   });
-   </script>
+});
+</script>
+<script>
+		$(window).on('beforeunload', function(){
+      return 'aaa';
+    });
+	$(window).on('unload', function(){
+    $.ajax({
+                    type: 'POST',
+                    url: '../php/imprimirCertificado.php',
+                    data: { action : 22 },
+                    async: false,
+                });
+	});
+
+	
+</script>
 </body>
 </html>
