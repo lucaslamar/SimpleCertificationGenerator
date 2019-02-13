@@ -401,34 +401,16 @@ Contribua</li></a>
 			<label for="formControlRange">Eixo X</label>
 			<input type="range" class="form-control-range"  id="eixoX" max="3000" name="eixoXAtual" id="formControlRange">
 			<label for="formControlRange">Eixo Y</label>
-
-
-
 			<div id="diveixoX" style="display: none">50</div>
 			<div id="diveixoY" style="display: none">50</div>
 			<div id="divFonte" style="display: none">50</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			<input type="range" class="form-control-range" id="eixoY" max="3000"  name="eixoYAtual" id="formControlRange">            
 			<label for="formControlRange">Fonte</label>
 			<input type="range" class="form-control-range" max="1000" name="fonteAtual" id="fonteAtual">
 			<div id="certificado"></div>
 			<div class="buttonSlot">
 				<a href="../php/certificado/certificado.jpg" target="_blank"><button class="formButton">Gerar JPEG</button></a>
-				<a href="../php/certificado/certificado.pdf" target="_blank"><button class="formButton">Gerar PDF</button></a>
+				<button onclick="gerarPDF();" class="formButton">Gerar PDF</button>
 				<a href="gerarCertificado.html"><button class="formButton">Retornar</button></a>
 			</div>
 
@@ -478,6 +460,20 @@ Contribua</li></a>
 
 
 <script type="text/javascript" src="../js/abreModal.js"></script>
+<script>
+	function gerarPDF() {
+		$.ajax({
+			type: 'POST',
+			url: '../php/imprimirCertificado.php',
+			data: { teste : 22 },
+			success: function() {
+				var url = "../php/certificado/certificado.pdf";
+				window.open(url, "_blank");
+			},
+			async: false,
+		});
+	}
+</script>
 <script>
 	$("form#myForm").submit(function(e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.
@@ -546,13 +542,13 @@ Contribua</li></a>
 			rng.addEventListener("mousemove", listener);
 		});
 		rng2.addEventListener("mousedown", function() {
-      listener();
+			listener();
 			rng2.addEventListener("mousemove", listener);
 		});
-    rng3.addEventListener("mousedown", function() {
-              listener();
-              rng3.addEventListener("mousemove", listener);
-            });
+		rng3.addEventListener("mousedown", function() {
+			listener();
+			rng3.addEventListener("mousemove", listener);
+		});
 		rng.addEventListener("mouseup", function() {
 			rng.removeEventListener("mousemove", listener);
 			$.ajax({
@@ -596,24 +592,21 @@ Contribua</li></a>
    // include the following line to maintain accessibility
    // by allowing the listener to also be fired for
    // appropriate keyboard events
-   rng.addEventListener("keydown", listener);
-   
+   rng.addEventListener("keydown", listener);  
 });
 </script>
 <script>
-		$(window).on('beforeunload', function(){
-      return 'aaa';
-    });
-	$(window).on('unload', function(){
-    $.ajax({
-                    type: 'POST',
-                    url: '../php/imprimirCertificado.php',
-                    data: { action : 22 },
-                    async: false,
-                });
+	$(window).on('beforeunload', function(){
+		return 'aaa';
 	});
-
-	
+	$(window).on('unload', function(){
+		$.ajax({
+			type: 'POST',
+			url: '../php/imprimirCertificado.php',
+			data: { action : 22 },
+			async: false,
+		});
+	});
 </script>
 </body>
 </html>
