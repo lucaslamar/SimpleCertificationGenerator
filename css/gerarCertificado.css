@@ -208,10 +208,10 @@ a.active:hover {
         background: url('../backgrounds/bg750x1334.png')  no-repeat center center fixed;
     }
 }
-@media (min-width: 1366px) and (max-width: 1920px) 
+@media (min-width: 1200px) and (max-width: 1920px) 
 {   
     .modal-content {
-        width: 20vw; 
+        width: 22vw; 
         height: 100vh;
     }
     
@@ -478,3 +478,27 @@ border-bottom:2px solid #EA2027 ;
     box-shadow: 0 0 11px #2d2d2dee;
 }
 
+#loadingImage {
+    display: none;
+    margin-top: -225px;
+    height: 225px;
+    width: 100%;
+    background-color: rgba(255,255,255, 0.5);
+    display: none;
+}
+
+#loadingAnimation {
+  display: none;
+  margin: 0 auto;  
+  border: 10px solid #f1f1f1;
+  border-radius: 50%;
+  border-top: 10px solid #EA2027;
+  width: 55px;
+  height: 55px;
+  -webkit-animation: spin 1.5s linear infinite; /* Safari */
+  animation: spin 1.5s linear infinite;
+}
+
+#loFi {
+    padding-top: 112.5px;
+}

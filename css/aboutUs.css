@@ -198,10 +198,10 @@ a.active:hover {
         background: url('../backgrounds/bg750x1334.png')  no-repeat center center fixed;
     }
 }
-@media (min-width: 1366px) and (max-width: 1920px) 
+@media (min-width: 1200px) and (max-width: 1920px) 
 {
     .modal-content {
-        width: 20vw; 
+        width: 22vw; 
         height: 100vh;
     }
     
@@ -282,7 +282,7 @@ hr {
     color: #ffffff;
     max-height: 50px;
 }
-@media (min-width: 1278px) and (max-width: 1920px) 
+@media (min-width: 1200px) and (max-width: 1920px) 
 {
     .centerCard {
     margin-top: 15vh;
