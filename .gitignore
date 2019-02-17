@@ -1,3 +1,4 @@
 # Don't track content of these folders
 php/certificado
 php/fontes
+desktop.ini
