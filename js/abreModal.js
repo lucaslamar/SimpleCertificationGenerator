@@ -4,8 +4,14 @@ Olá, meu nome é Arthur e este é o meu código em JS. Neste código vamos inse
 
 
 
+//Primeiramente, vamos validar os inputs para garantir a segurança e usabilidade do usuário.
 
-//Primeiramente, vamos validar os inputs para garantir a segurança e usabilidade pelo usuário.
+//Vamos pegar dar foco no primeiro campo do formulário alguns segundos após a animação ser apresentada ao usuário
+function focoInput() {
+    document.getElementById("nomCert").focus();
+}setTimeout(focoInput, 800);
+
+
 
 //A variável trueInput é um array que possui dois estados: 0 ou 1. 1 é quando o input está corretamente preenchido e 0 quando o input não está corretamente preenchido.
 var trueInput = [0, 0, 0, 0];
@@ -237,6 +243,13 @@ window.onclick = function (event){
             
         }
     }
+    var typed = new Typed('#requerimentos', {
+    strings: ["Requerimentos"],
+    typeSpeed: 40,
+    backSpeed: 0,
+    fadeOut: true,
+    loop: false
+  });
     //Excelente! Agora vamos alterar o svg da classe que foi definida como "active", iterando pelos elementos da tag svg e modificando o valor "fill" para a cor desejada.
     var getIcon = document.getElementsByClassName("infoItem active")[0];
     getPathIcon = getIcon.getElementsByTagName("path");
@@ -246,6 +259,26 @@ window.onclick = function (event){
     }
 
 }
+document.getElementById("gerandoPdf").addEventListener("click", function(){
+
+        $("#gerandoPdf").css("display", "none");
+        $("#carregandoPdf").css("display", "block");
+    function gerarPDF() {
+        console.log("Yay!");
+        $.ajax({
+            type: 'POST',
+            url: '../php/imprimirCertificado.php',
+            data: { teste : 22 },
+            success: function() {
+                $("#gerandoPdf").css("display", "block");
+                $("#carregandoPdf").css("display", "none");
+                var url = "../php/certificado/certificado.pdf";
+                window.open(url, "_blank");
+            },
+            async: false,
+        });
+    }setTimeout(gerarPDF, 300);
+})
 
 
 //Eu estou usando uma biblioteca chamada Typed.JS para dar um efeito bonito de digitação às strings dos títulos de cada página. 
@@ -266,7 +299,8 @@ $('#inputCert').on('change',function(){
                 var fileName = document.getElementById("inputCert").files[0].name;
                 $(this).next('.custom-file-label').html(fileName);
             })
-			$('#inputFonte').on('change',function(){
+            $('#inputFonte').on('change',function(){
                 var fileName = document.getElementById("inputFonte").files[0].name;
                 $(this).next('.custom-file-label').html(fileName);
             })
+

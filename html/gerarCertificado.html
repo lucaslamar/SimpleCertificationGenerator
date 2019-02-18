@@ -412,7 +412,8 @@ Contribua</li></a>
       </div>
 			<div class="buttonSlot">
 				<a href="../php/certificado/certificado.jpg" target="_blank"><button class="formButton">Gerar JPEG</button></a>
-				<button onclick="gerarPDF();" class="formButton">Gerar PDF</button>
+				<button class="formButton" id="gerandoPdf">Gerar PDF</button>
+				<div id="carregandoPdf"></div>
 				<a href="gerarCertificado.html"><button class="formButton">Retornar</button></a>
 			</div>
 
@@ -462,20 +463,7 @@ Contribua</li></a>
 
 
 <script type="text/javascript" src="../js/abreModal.js"></script>
-<script>
-	function gerarPDF() {
-		$.ajax({
-			type: 'POST',
-			url: '../php/imprimirCertificado.php',
-			data: { teste : 22 },
-			success: function() {
-				var url = "../php/certificado/certificado.pdf";
-				window.open(url, "_blank");
-			},
-			async: false,
-		});
-	}
-</script>
+
 <script>
 	$("form#myForm").submit(function(e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.

@@ -3,8 +3,10 @@ class funcoes{
 
 // Verifica qual a versão do IMAGICK
 	function verificaimagick(){
+        ob_start()
 		$versaoAnterior7 = shell_exec( 'convert -version');
 		$versaoSuperior7 = shell_exec( 'magick convert -version');
+        ob_end_clean();   
 		
 		if ($versaoAnterior7 != NULL){
 			return 'convert ';
@@ -13,7 +15,7 @@ class funcoes{
 			return 'magick convert ';
 		}
 		else{
-			header('HTTP/1.1 415 Por favor instale o ImageImagick para continuar! / Please install ImageImagick to continue!');
+			header('HTTP/1.1 415 Por favor instale o ImageImagick para continuar! / Please install ImageImagick to continue! Teste $versaoSuperior7');
 			die;
 		}
 		
