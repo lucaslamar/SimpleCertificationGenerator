@@ -15,7 +15,7 @@ class funcoes{
 			return 'magick convert ';
 		}
 		else{
-			header('HTTP/1.1 415 Por favor instale o ImageImagick para continuar! / Please install ImageImagick to continue! Teste $versaoSuperior7');
+			header('HTTP/1.1 415 Por favor instale o ImageImagick para continuar! / Please install ImageImagick to continue!');
 			die;
 		}
 		
