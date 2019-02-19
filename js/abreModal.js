@@ -264,12 +264,11 @@ document.getElementById("gerandoPdf").addEventListener("click", function(){
         $("#gerandoPdf").css("display", "none");
         $("#carregandoPdf").css("display", "block");
     function gerarPDF() {
-        console.log("Yay!");
         $.ajax({
             type: 'POST',
             url: '../php/imprimirCertificado.php',
-            data: { teste : 22 },
-            success: function() {
+            data: { gerarPDF: 1, eixoX:document.querySelector("#diveixoX").innerHTML, eixoY:document.querySelector("#diveixoY").innerHTML, fonte:document.querySelector("#divFonte").innerHTML },
+            success: function(data) {
                 $("#gerandoPdf").css("display", "block");
                 $("#carregandoPdf").css("display", "none");
                 var url = "../php/certificado/certificado.pdf";

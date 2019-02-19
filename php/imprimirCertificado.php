@@ -3,13 +3,20 @@ session_start();
 require_once('funcoes.php');
 $funcao = new Funcoes(); 
 //unset ($_SESSION['gerarIRT']);
-if(isset($_POST['teste']) && !empty($_POST['teste'])) {
-    echo $_SESSION['verificaimagick'];
-    $output = shell_exec($_SESSION['verificaimagick'] . __DIR__ . DIRECTORY_SEPARATOR ."certificado". DIRECTORY_SEPARATOR ."certificado.jpg ". __DIR__ . DIRECTORY_SEPARATOR ."certificado". DIRECTORY_SEPARATOR ."certificado.pdf");
-}
 $verificaimagick = $funcao -> verificaimagick();
 $_SESSION['verificaimagick'] = $verificaimagick;
 $verificaGhostscript = $funcao -> verificaGhostscript();
+if(isset($_POST['gerarPDF']) && !empty($_POST['gerarPDF'])) {
+    $eixoX = (int)$_POST['eixoX'];
+    $eixoY = (int)$_POST['eixoY'];
+    $fonte = (int)$_POST['fonte'];
+    $_SESSION['eixoX'] = $eixoX;
+    $_SESSION['eixoY'] = $eixoY;
+    $_SESSION['fonteTamanho'] = $fonte;
+    $nomeSemEspacos = str_replace(' ', '_', $_SESSION['nome']); 
+    $teste = $funcao -> gerarIRT($verificaGhostscript);
+    $output = shell_exec($_SESSION['verificaimagick'] . __DIR__ . DIRECTORY_SEPARATOR ."certificado". DIRECTORY_SEPARATOR ."certificado.jpg ". __DIR__ . DIRECTORY_SEPARATOR ."certificado". DIRECTORY_SEPARATOR ."certificado_".$nomeSemEspacos.".pdf");
+}
 if (isset ($_SESSION['gerarIRT']) && $_SESSION['gerarIRT'] == true ){
     $eixoX = (int)$_POST['eixoX'];
     $eixoY = (int)$_POST['eixoY'];
@@ -17,9 +24,7 @@ if (isset ($_SESSION['gerarIRT']) && $_SESSION['gerarIRT'] == true ){
     $_SESSION['eixoX'] = $eixoX;
     $_SESSION['eixoY'] = $eixoY;
     $_SESSION['fonteTamanho'] = $fonte;
-  // 2 = 0 3=1 4=2 5=3 6=4
-    $dados = [$verificaGhostscript,$_SESSION['pdf'],$_SESSION['nome'],$_SESSION['fonte'],$fonte,$verificaimagick];
-    $teste = $funcao -> gerarIRT($dados);
+    $teste = $funcao -> gerarIRT($verificaGhostscript);
 }
 else{	
     $verificaPastas = $funcao -> verificaPastas();
